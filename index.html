@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>НС | Психолог-символдраматист для эмигрантов</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&family=Marck+Script&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body class="text-slate-800 bg-transparent overflow-x-hidden">
+    <div class="fixed inset-0 -z-20 bg-[#fcfcfd]"></div>
+    <div class="fixed inset-0 -z-10 opacity-30 pointer-events-none">
+        <div class="absolute inset-0 bg-gradient-to-tr from-blue-50/20 via-transparent to-slate-50/20"></div>
+    </div>
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-blue-100">
+        <div class="max-w-6xl mx-auto px-6 py-2 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                <div class="w-16 h-16 bg-transparent flex items-center justify-center overflow-hidden shrink-0">
+                    <img src="img/logo.webp" alt="НС" class="w-full h-full object-contain">
+                </div>
+                <div class="flex flex-col justify-center border-l border-blue-100 pl-4 h-12">
+                    <span class="logo-script text-2xl md:text-3xl text-slate-900 leading-[0.8]">
+                        Наталья Силина
+                    </span>
+                    <span class="logo-script text-[11px] md:text-[14px] text-blue-500 -mt-0.5 opacity-90 tracking-tighter sm:tracking-normal" style="display: block; width: 100%; text-align: justify; text-align-last: justify;">
+                        путь через изменения к гармонии
+                    </span>
+                </div>
+            </a>
+
+            <div class="hidden lg:flex items-center text-sm font-medium text-slate-600">
+                <a href="#about" class="hover:text-blue-600 transition-colors px-4 border-r border-blue-100/50">Обо мне</a>
+                <a href="#method" class="hover:text-blue-600 transition-colors px-4 border-r border-blue-100/50">Методы</a>
+                <a href="#services" class="hover:text-blue-600 transition-colors px-4 border-r border-blue-100/50">Услуги</a>
+                <a href="#reviews" class="hover:text-blue-600 transition-colors px-4 border-r border-blue-100/50">Отзывы</a>
+                <a href="#articles" class="hover:text-blue-600 transition-colors px-4 border-r border-blue-100/50">Статьи</a>
+                <a href="#contact" class="hover:text-blue-600 transition-colors px-4 ">Контакты</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <a href="#contact" class="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-medium btn-primary">Записаться</a>
+                <button id="menu-btn" class="lg:hidden text-slate-900 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="min-h-screen">
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] flex flex-col p-10 lg:hidden">
+            <button id="close-btn" class="self-end text-slate-900 mb-10"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+            <div class="flex flex-col space-y-8 text-2xl font-serif">
+                <a href="#about" class="mobile-link">Обо мне</a>
+                <a href="#method" class="mobile-link">Методы</a>
+                <a href="#services" class="mobile-link">Услуги</a>
+                <a href="#reviews" class="mobile-link">Отзывы</a>
+                <a href="#contact" class="mobile-link text-blue-600">Записаться</a>
+            </div>
+        </div>
+        <section class="hero-bg min-h-screen flex items-center pt-24 pb-12 overflow-hidden relative">
+            <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+                <div class="order-2 md:order-1 text-center md:text-left">
+                    <span class="text-blue-500 font-medium tracking-widest uppercase text-xs">Психолог-символдраматист</span>
+                    <h1 class="mt-4 leading-tight">
+                        <span class="block text-5xl md:text-7xl font-bold text-slate-900 mb-2">Наталья Силина</span>
+                        <span class="block text-2xl md:text-3xl text-blue-600 font-serif italic font-light">бережный терапевт для эмигрантов</span>
+                    </h1>
+                    <p class="mt-8 text-base md:text-lg text-slate-600 leading-relaxed max-w-lg mx-auto md:mx-0">
+                        Помогаю обрести устойчивость, прожить кризис адаптации и найти новые смыслы в условиях неопределенности.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="#contact" class="bg-blue-600 text-white px-8 py-4 rounded-lg text-center font-medium btn-primary shadow-lg shadow-blue-200">Записаться на сессию</a>
+                        <a href="#method" class="border border-blue-200 text-blue-700 px-8 py-4 rounded-lg text-center font-medium hover:bg-white transition-colors">Методы работы</a>
+                    </div>
+                </div>
+                <div class="relative order-1 md:order-2">
+                    <div class="aspect-[4/5] bg-blue-100 rounded-3xl overflow-hidden shadow-2xl max-w-sm mx-auto md:max-w-none border-8 border-white">
+                        <img src="img/photoNata.jpeg" alt="Наталья Силина" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-lg hidden lg:block border border-blue-50">
+                        <p class="font-serif italic text-blue-800 text-lg">"Дом там, где вы чувствуете себя собой."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="py-24 border-b border-slate-50 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-6 relative z-10">
+                <h2 class="text-3xl md:text-5xl text-slate-900 font-serif mb-12">Обо мне</h2>
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div class="text-base md:text-lg text-slate-600 space-y-6 leading-relaxed">
+                        <p class="font-medium text-slate-900">Меня зовут Наталья, я профессиональный психолог.</p>
+                        <p>В моей работе я объединяю несколько методов и направлений психотерапии, стремясь к целостности и глубокому пониманию. Для меня важно рассматривать проблему с различных ракурсов, чтобы найти наилучшее решение.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-blue-50">
+                            <div>
+                                <p class="text-blue-600 font-bold text-2xl">2010 год</p>
+                                <p class="text-xs uppercase tracking-widest text-slate-400">высшее образование</p>
+                            </div>
+                            <div>
+                                <p class="text-blue-600 font-bold text-2xl">13 лет</p>
+                                <p class="text-xs uppercase tracking-widest text-slate-400">опыта работы</p>
+                            </div>
+                        </div>
+                        <p class="text-sm italic">Регулярно участвую в супервизиях и интервизиях; являюсь участницей книжного клуба для психологов; дальнейшие обучения по психологии запланированы на год вперед.</p>
+                        <div class="mt-8 border-t border-blue-50 pt-6">
+                            <h3 class="text-lg font-serif text-slate-900 mb-4 italic">Образование и сертификаты</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div onclick="openCert('img/cert1.jpg')" class="group cursor-pointer">
+                                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-blue-100 shadow-sm transition-all group-hover:shadow-md group-hover:border-blue-300">
+                                        <img src="img/cert1.jpg" alt="Сертификат" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                    </div>
+                                </div>
+                                <div onclick="openCert('img/cert2.jpg')" class="group cursor-pointer">
+                                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-blue-100 shadow-sm transition-all group-hover:shadow-md group-hover:border-blue-300">
+                                        <img src="img/cert2.jpg" alt="Сертификат" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                    </div>
+                                </div>
+                                <div onclick="openCert('img/cert3.jpg')" class="group cursor-pointer">
+                                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-blue-100 shadow-sm transition-all group-hover:shadow-md group-hover:border-blue-300">
+                                        <img src="img/cert3.jpg" alt="Сертификат" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50/50 p-8 rounded-3xl border border-blue-100 backdrop-blur-sm">
+                        <h3 class="text-xl font-serif italic text-blue-900 mb-6">Личные факты:</h3>
+                        <ul class="space-y-4 text-sm text-slate-600">
+                            <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">●</span><span>Самой важной ценностью в жизни является моя семья и близкие.</span></li>
+                            <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">●</span><span>Обожаю общаться и находиться в контакте с людьми. Нет ничего ценнее интересных бесед.</span></li>
+                            <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">●</span><span>Любовь к чтению настолько велика, что я могу читать даже на ходу!</span></li>
+                            <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">●</span><span>Создаю уют в своем доме, вышивая картины. Способ выразить творческий потенциал.</span></li>
+                            <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">●</span><span>Спорт — эффективный способ реагировать на стресс и негативные эмоции.</span></li>
+                            <li class="pt-4 border-t border-blue-100 font-medium text-slate-800 italic">
+                                Прожив почти четыре года в эмиграции, я прошла через весь процесс адаптации. Знаю, как болит у эмигранта.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="method" class="py-24 accent-blue relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-6 relative z-10">
+                <h2 class="text-3xl md:text-4xl text-center mb-10 text-slate-900 font-serif">Методы работы</h2>
+                <div class="max-w-4xl mx-auto mb-16 text-center space-y-6">
+                    <p class="text-lg leading-relaxed text-slate-700">В моей работе я предпочитаю <strong>интегративный подход</strong>. Для меня это не просто методика, это философия.</p>
+                    <p class="text-slate-600 italic">Объединение различных теорий и техник с целью создания наиболее эффективного и комфортного пространства. Каждый человек уникален.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-50 card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 mb-3 uppercase text-xs tracking-widest">Символдрама</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Бессознательное через образы («Сны наяву»), бережная проработка глубоких структур.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-50 card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 mb-3 uppercase text-xs tracking-widest">Гештальт</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Осознание «здесь и сейчас», работа с контактом и завершение прерванных циклов.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-50 card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 20 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 mb-3 uppercase text-xs tracking-widest">Метод ЭОТ</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Эмоционально-образная терапия для быстрой работы с психосоматикой и зажимами.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-50 card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 mb-3 uppercase text-xs tracking-widest">Арт и МАК</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Визуализация аспектов жизни через творчество и метафорические карты.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-50 card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" /></svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 mb-3 uppercase text-xs tracking-widest">Гипноз</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Эриксоновский гипноз для мягкого изменения деструктивных паттернов мышления.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-50 card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 mb-3 uppercase text-xs tracking-widest">Коучинг</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Работа на равных для достижения конкретных жизненных целей и самореализации.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-50 card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 mb-3 uppercase text-xs tracking-widest">Клиент-центрированная</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Эмпатия и безусловное принятие ваших чувств как основа исцеления.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-50 card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 mb-3 uppercase text-xs tracking-widest">Кризисная терапия</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Поддержка после травматических событий и восстановление опор.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="services" class="py-24">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl text-center mb-16 text-slate-900 font-serif">С чем я работаю</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
+                    <div class="group bg-slate-50 p-8 rounded-3xl border border-blue-50 transition-all hover:shadow-md">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-slate-900">Внутренние переживания</h3>
+                        <ul class="text-slate-600 space-y-2 text-sm leading-relaxed">
+                            <li>• Страхи и тревоги</li>
+                            <li>• Стыд и вина</li>
+                            <li>• Апатия и депрессия</li>
+                            <li>• Алекситимия</li>
+                            <li>• Одиночество</li>
+                        </ul>
+                    </div>
+                    <div class="group bg-slate-50 p-8 rounded-3xl border border-blue-50 transition-all hover:shadow-md">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 20 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-slate-900">Адаптация и кризисы</h3>
+                        <ul class="text-slate-600 space-y-2 text-sm leading-relaxed">
+                            <li>• Переезд в новую страну</li>
+                            <li>• Адаптация в эмиграции</li>
+                            <li>• Преодоление кризисных ситуаций</li>
+                            <li>• Низкая самооценка</li>
+                        </ul>
+                    </div>
+                    <div class="group bg-slate-50 p-8 rounded-3xl border border-blue-50 transition-all hover:shadow-md">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-slate-900">Отношения и здоровье</h3>
+                        <ul class="text-slate-600 space-y-2 text-sm leading-relaxed">
+                            <li>• Проблемы в паре и семье</li>
+                            <li>• Психосоматические симптомы</li>
+                            <li>• Нарушения пищевого поведения</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-blue-100 pt-20">
+                    <h2 class="text-3xl md:text-4xl text-center mb-8 text-slate-900 font-serif">Как я работаю</h2>
+                    <p class="text-center text-slate-600 max-w-2xl mx-auto mb-16 leading-relaxed">
+                        Я предоставляю онлайн-консультации для русскоговорящих клиентов по всему миру.
+                        Вы можете выбрать наиболее подходящий для вас формат взаимодействия:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        <div class="bg-white p-8 rounded-3xl border border-blue-100 shadow-sm hover:border-blue-300 transition-colors">
+                            <div class="text-blue-600 mb-4 font-serif italic text-lg">Краткосрочный формат</div>
+                            <h4 class="text-xl font-bold mb-4 text-slate-900">Консультирование</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                                Работа с конкретными точечными запросами. Мы используем быстрые методы и коучинговые стратегии для оперативного поиска решений и достижения видимых результатов.
+                            </p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl border border-blue-100 shadow-sm hover:border-blue-300 transition-colors">
+                            <div class="text-blue-600 mb-4 font-serif italic text-lg">Длительный формат</div>
+                            <h4 class="text-xl font-bold mb-4 text-slate-900">Психотерапия</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                                Глубокая работа с травмами, поиск внутренних смыслов и качественная трансформация личности. Этот формат позволяет достичь устойчивых изменений в жизни.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-16 text-center">
+                        <div class="inline-block bg-blue-50 px-8 py-4 rounded-2xl border border-blue-100 mb-8">
+                            <span class="text-slate-600 italic">Оплата за сессию (50 минут):</span>
+                            <span class="text-2xl font-bold text-blue-800 ml-2">50€</span>
+                        </div>
+                        <div>
+                            <a href="#contact" class="inline-block bg-blue-600 text-white px-10 py-4 rounded-xl font-bold btn-primary shadow-lg shadow-blue-200">
+                                Записаться на сессию
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="reviews" class="py-24 bg-slate-50 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl text-center mb-12 text-slate-900 font-serif">Отзывы клиентов</h2>
+                <div class="carousel-container relative" id="carouselContainer">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="review-card"><div class="bg-white p-8 rounded-2xl shadow-sm h-full italic border border-blue-50"><p class="text-slate-600">"Благодаря Наталье я смогла пережить первый год в Германии. Очень бережный специалист."</p><p class="mt-4 font-bold not-italic">— Анна, Берлин</p></div></div>
+                        <div class="review-card"><div class="bg-white p-8 rounded-2xl shadow-sm h-full italic border border-blue-50"><p class="text-slate-600">"Метод символдрамы стал открытием. Очень мягкая работа с глубокими страхами."</p><p class="mt-4 font-bold not-italic">— Максим, Тбилиси</p></div></div>
+                        <div class="review-card"><div class="bg-white p-8 rounded-2xl shadow-sm h-full italic border border-blue-50"><p class="text-slate-600">"Профессионализм и эмпатия. Помогла разобраться с выгоранием после переезда."</p><p class="mt-4 font-bold not-italic">— Елена, Лиссабон</p></div></div>
+                        <div class="review-card"><div class="bg-white p-8 rounded-2xl shadow-sm h-full italic border border-blue-50"><p class="text-slate-600">"С Натальей легко говорить о самом трудном. Очень ценю нашу работу."</p><p class="mt-4 font-bold not-italic">— Игорь, Ереван</p></div></div>
+                    </div>
+                    <button id="prevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 p-3 rounded-full shadow-md z-10 hover:bg-blue-600 hover:text-white transition-all ml-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <button id="nextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 p-3 rounded-full shadow-md z-10 hover:bg-blue-600 hover:text-white transition-all mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section id="articles" class="py-24 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-6 relative z-10">
+                <div class="mb-12">
+                    <h2 class="text-3xl md:text-4xl text-slate-900 font-serif mb-4 text-center">Статьи и размышления</h2>
+                    <p class="text-slate-600 text-center max-w-2xl mx-auto">Нажмите на карточку, чтобы прочитать статью полностью, не покидая сайт.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <article onclick="openModal('article-1')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
+                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Первый год в эмиграции</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3">Разбираем основные этапы психологической адаптации и способы поддержки себя...</p>
+                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
+                    </article>
+                    <article onclick="openModal('article-2')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
+                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Язык образов</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3">Почему рисунки и внутренние образы иногда говорят больше, чем тысячи слов...</p>
+                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
+                    </article>
+                    <article onclick="openModal('article-3')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
+                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Работа с чувствами и эмоциями</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3">Разбираем основные чувства и эмоции...</p>
+                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <div id="modal-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+            <div id="article-1" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
+                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <div class="mt-4">
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Адаптация</span>
+                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Первый год в эмиграции: как не потерять себя</h2>
+                    <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
+                        <p>Здесь будет ваш полный текст статьи...</p>
+                        <p>Эмиграция — это не только физический переезд, но и глубокая психологическая трансформация.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="article-2" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
+                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <div class="mt-4">
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Методы</span>
+                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Язык образов в терапии</h2>
+                    <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
+                        <p>Полный текст второй статьи...</p>
+                    </div>
+                </div>
+            </div>
+            <div id="article-3" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
+                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <div class="mt-4">
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Внутренние переживания</span>
+                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Стыд, вина, обида</h2>
+                    <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
+                        <p>Полный текст третьей статьи...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="contact" class="py-24 accent-pastel">
+                <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
+                    <div>
+                        <h2 class="text-3xl md:text-5xl text-slate-900 font-serif">Свяжитесь со мной</h2>
+                        <p class="mt-6 text-lg text-slate-600 leading-relaxed">
+                            Если вы готовы начать путешествие к психологическому здоровью и лучшей версии себя, свяжитесь со мной! Вместе мы создадим пространство для вашего развития и самопознания.
+                        </p>
+                        <div class="mt-12 space-y-6">
+                            <a href="mailto:nataliasilina2019@gmail.com" class="flex items-center space-x-4 group">
+                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-blue-100 transition-all group-hover:border-red-400 group-hover:shadow-md">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" class="h-6 w-6">
+                                </div>
+                                <span class="group-hover:text-[#EA4335] transition-colors font-medium">nataliasilina2019@gmail.com</span>
+                            </a>
+                            <a href="https://t.me/NataliaSilina_psy" class="flex items-center space-x-4 group">
+                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-blue-100 transition-all duration-300 group-hover:border-[#0088CC] group-hover:shadow-md">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="TG" class="h-6 w-6">
+                                </div>
+                                <span class="group-hover:text-[#0088CC] transition-colors font-medium">@NataliaSilina_psy</span>
+                            </a>
+                            
+                            <a href="https://wa.me/726342258" class="flex items-center space-x-4 group">
+                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-blue-100 transition-all duration-300 group-hover:border-[#25D366] group-hover:shadow-md">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WA" class="h-6 w-6">
+                                </div>
+                                <span class="group-hover:text-[#25D366] transition-colors font-medium">WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="form-container" class="relative min-h-[400px]">
+                        <form id="email-form" class="space-y-4 bg-white p-10 rounded-3xl shadow-xl border border-blue-50">
+                            <h3 class="text-xl font-bold mb-6 text-slate-900 font-serif">Записаться на встречу</h3>
+                            <input type="text" name="user_name" required placeholder="Как к вам обращаться?" class="w-full px-5 py-4 rounded-xl border border-blue-100 bg-blue-50/30 outline-none focus:bg-white focus:ring-2 focus:ring-blue-200 transition-all">
+                            <input type="email" name="user_email" required placeholder="Ваш Email для связи" class="w-full px-5 py-4 rounded-xl border border-blue-100 bg-blue-50/30 outline-none focus:bg-white focus:ring-2 focus:ring-blue-200 transition-all">
+                            <textarea name="message" rows="4" required placeholder="Ваш запрос (кратко)" class="w-full px-5 py-4 rounded-xl border border-blue-100 bg-blue-50/30 outline-none focus:bg-white focus:ring-2 focus:ring-blue-200 transition-all"></textarea>
+                            <button type="submit" id="submit-btn" class="w-full py-5 rounded-xl font-bold btn-primary text-white text-lg shadow-lg">Отправить запрос</button>
+                        </form>
+                        <div id="success-screen" class="hidden absolute inset-0 bg-white p-10 rounded-3xl shadow-xl border border-blue-50 flex flex-col items-center justify-center text-center fade-in">
+                            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 13l4 4L19 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <h3 class="text-2xl font-serif font-bold text-slate-900 mb-2">Запрос отправлен!</h3>
+                            <p class="text-slate-600">Наталья свяжется с вами в течение 24 часов.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-300 py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    
+                <div class="col-span-1">
+                    <div class="flex flex-col mb-6">
+                        <span class="text-white text-2xl font-serif">Наталья Силина</span>
+                        <span class="logo-script text-blue-400 text-lg">путь к гармонии</span>
+                    </div>
+                    <p class="text-sm leading-relaxed text-slate-400">
+                        Бережная психологическая помощь для тех, кто находится в поиске себя или проходит через сложные жизненные этапы и адаптацию.
+                    </p>
+                </div>
+    
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Навигация</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#about" class="hover:text-blue-400 transition-colors">Обо мне</a></li>
+                        <li><a href="#method" class="hover:text-blue-400 transition-colors">Методы работы</a></li>
+                        <li><a href="#services" class="hover:text-blue-400 transition-colors">Услуги и цены</a></li>
+                        <li><a href="#articles" class="hover:text-blue-400 transition-colors">Полезные статьи</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Помощь</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#reviews" class="hover:text-blue-400 transition-colors">Отзывы клиентов</a></li>
+                        <li><a href="#contact" class="hover:text-blue-400 transition-colors">Записаться на сессию</a></li>
+                        <li class="pt-2">
+                            <span class="block text-slate-500 text-xs mb-1">Время работы:</span>
+                            <span class="text-slate-300">Пн — Пт: 10:00 - 20:00 (GMT+1)</span>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Связаться со мной</h4>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="https://t.me/NataliaSilina_psy" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all text-slate-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.717-.962 4.084-1.362 5.441-.168.575-.348.77-.553.79-.448.045-.788-.291-1.223-.575-.68-.445-1.063-.721-1.723-1.155-.762-.501-.268-.777.166-1.228.113-.118 2.083-1.908 2.121-2.071.005-.02.009-.096-.036-.136-.045-.04-.112-.026-.16-.015-.068.016-1.154.731-3.25 2.15-.307.211-.585.314-.833.309-.273-.005-.798-.154-1.189-.281-.48-.155-.861-.237-.828-.5.017-.138.208-.279.572-.425 2.24-.974 3.733-1.617 4.48-1.93 2.13-.888 2.571-1.042 2.859-1.047.064-.001.206.015.298.09.078.064.101.15.109.215.009.068.01.213-.001.268z"/></svg>
+                        </a>
+                        <a href="https://wa.me/726342258" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all text-slate-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </a>
+                    </div>
+                    <a href="mailto:nataliasilina2019@gmail.com" class="text-sm hover:text-white transition-colors break-words">
+                        nataliasilina2019@gmail.com
+                    </a>
+                </div>
+            </div>
+    
+            <div class="pt-8 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center text-xs text-slate-500 space-y-4 lg:space-y-0 text-center lg:text-left">
+                <p>&copy; 2025 Наталья Силина. Все права защищены.</p>
+                <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 uppercase tracking-widest font-medium">
+                    <span>Психолог-символдраматист</span>
+                    <span class="hidden md:inline text-slate-800">|</span>
+                    <span>Консультации онлайн</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+    <div id="cert-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-[100] hidden items-center justify-center p-4" onclick="closeCert()">
+        <button class="absolute top-5 right-5 text-white/70 hover:text-white text-4xl">&times;</button>
+        <img id="cert-img" src="" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl" onclick="event.stopPropagation()">
+    </div>
+</body>
+</html>

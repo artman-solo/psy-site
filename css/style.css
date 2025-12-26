@@ -1,0 +1,86 @@
+/* --- БАЗОВЫЕ НАСТРОЙКИ ШРИФТОВ И СКРОЛЛА --- */
+body { 
+    font-family: 'Inter', sans-serif; 
+    scroll-behavior: smooth; /* Плавная прокрутка к якорям (секциям) */
+}
+
+/* Заголовки и антиквенные шрифты */
+h1, h2, h3, .font-serif, .logo-font { 
+    font-family: 'Playfair Display', serif; 
+}
+
+/* Каллиграфический шрифт для логотипа (ваша подпись) */
+.logo-script { 
+    font-family: 'Marck Script', cursive; 
+}
+
+/* --- ЦВЕТОВЫЕ АКЦЕНТЫ И ФОНЫ --- */
+.hero-bg { background-color: #eff6ff; }       /* Светло-голубой фон первого экрана */
+.accent-pastel { background-color: #f8fafc; } /* Очень светлый серый для блоков */
+.accent-blue { background-color: #dbeafe; }   /* Мягкий синий акцент */
+
+/* --- КНОПКИ --- */
+.btn-primary { 
+    transition: all 0.3s ease; 
+    background-color: #1d4ed8; 
+}
+.btn-primary:hover { 
+    background-color: #1e40af; 
+    transform: translateY(-1px); /* Легкий подъем кнопки при наведении */
+}
+
+/* --- КАРТОЧКИ (Услуги, Статьи) --- */
+.card { 
+    background: white; 
+    transition: transform 0.3s ease; 
+    z-index: 10; 
+    position: relative; 
+}
+.card:hover { 
+    transform: translateY(-5px); /* Всплытие карточки при наведении */
+}
+
+/* --- МОБИЛЬНОЕ МЕНЮ --- */
+#mobile-menu { 
+    transition: transform 0.3s ease-in-out; 
+    transform: translateX(100%); /* По умолчанию скрыто за правым краем */
+}
+#mobile-menu.active { 
+    transform: translateX(0); /* Появление при активации */
+}
+
+/* --- КАРАУСЕЛЬ ОТЗЫВОВ --- */
+.carousel-container { 
+    overflow: hidden; 
+    position: relative; 
+    width: 100%; 
+}
+.carousel-track { 
+    display: flex; 
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Плавное движение слайдов */
+}
+.review-card { 
+    min-width: 100%; /* Один отзыв на мобильных */
+    box-sizing: border-box; 
+    padding: 0 12px; 
+}
+
+/* Адаптивность карусели: количество карточек в ряд */
+@media (min-width: 768px) { .review-card { min-width: 50%; } }     /* Два отзыва на планшетах */
+@media (min-width: 1024px) { .review-card { min-width: 33.333%; } } /* Три отзыва на десктопах */
+
+/* --- АНИМАЦИЯ ПОЯВЛЕНИЯ (Для экрана успеха и модалок) --- */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: scale(0.95); /* Начинает с чуть меньшего размера */
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1);    /* Становится в полный размер */
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out forwards; /* Плавное проявление за 0.4 сек */
+}
