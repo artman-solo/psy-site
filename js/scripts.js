@@ -165,7 +165,7 @@ function closeModal() {
     }
 }
 
-// Тапаут для статей (исправлено)
+// Тапаут для статей
 const modalOverlay = document.getElementById('modal-overlay');
 if (modalOverlay) {
     modalOverlay.onclick = function(e) {
@@ -193,3 +193,23 @@ function closeCert() {
         document.body.style.overflow = 'auto';
     }
 }
+
+// 6. Логика баннера Cookies
+document.addEventListener('DOMContentLoaded', function() {
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('accept-cookies');
+
+    if (banner && acceptBtn) {
+        // Проверяем, принимал ли уже пользователь куки
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                banner.classList.remove('translate-y-full');
+            }, 1000);
+        }
+
+        acceptBtn.addEventListener('click', function() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            banner.classList.add('translate-y-full');
+        });
+    }
+});
