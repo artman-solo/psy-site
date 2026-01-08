@@ -173,44 +173,34 @@ if (modalOverlay) {
     };
 }
 
-// 5. Сертификаты (Карусель превью и Модальное окно)
+// 5. Сертификаты (Бесконечная лента и Модалка)
 const certsData = [
     { src: 'img/cert1.jpg' },
     { src: 'img/cert2.jpg' },
     { src: 'img/cert3.jpg' },
-    { src: 'img/cert4.jpg' } // Добавьте свои файлы, если их больше
+    { src: 'img/cert4.jpg' }
 ];
 
 let currentModalIndex = 0;
-let currentStartIndex = 0;
 
-// 5.1 Отрисовка превью на странице
-function updateCertsUI() {
-    const grid = document.getElementById('certs-grid');
-    if (!grid) return;
+// 5.1 Инициализация ленты
+function initCertsMarquee() {
+    const track = document.getElementById('certs-track');
+    if (!track) return;
 
-    grid.style.opacity = '0'; // Эффект плавного перехода
-
-    setTimeout(() => {
-        grid.innerHTML = '';
-        // Показываем 3 карточки
-        for (let i = 0; i < 3; i++) {
-            const index = (currentStartIndex + i) % certsData.length;
-            const cert = certsData[index];
-            
-            grid.innerHTML += `
-                <div onclick="openCertByIndex(${index})" class="group cursor-pointer transition-all duration-500">
-                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-blue-100 shadow-sm transition-all group-hover:shadow-md group-hover:border-blue-300">
-                        <img src="${cert.src}" alt="Сертификат" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                    </div>
-                </div>
-            `;
-        }
-        grid.style.opacity = '1';
-    }, 300);
+    // Дублируем массив для бесконечного эффекта
+    const doubleCerts = [...certsData, ...certsData];
+    
+    track.innerHTML = doubleCerts.map((cert, index) => `
+        <div class="marquee-item group cursor-pointer px-2" onclick="openCertByIndex(${index % certsData.length})">
+            <div class="aspect-[4/3] overflow-hidden rounded-xl border border-blue-100 shadow-sm transition-all group-hover:shadow-lg group-hover:border-blue-300">
+                <img src="${cert.src}" alt="Сертификат" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+        </div>
+    `).join('');
 }
 
-// 5.2 Управление модальным окном
+// 5.2 Модальное окно (без изменений)
 function openCertByIndex(index) {
     currentModalIndex = index;
     const modal = document.getElementById('cert-modal');
@@ -247,14 +237,7 @@ function changeModalImg(step, event) {
 
 // 6. Cookies и Инициализация карусели
 document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация сертификатов
-    updateCertsUI();
-    
-    // Авто-прокрутка превью сертификатов каждые 5 секунд
-    setInterval(() => {
-        currentStartIndex = (currentStartIndex + 1) % certsData.length;
-        updateCertsUI();
-    }, 5000);
+    initCertsMarquee(); // Запускаем ленту
 
     // Логика баннера Cookies
     const banner = document.getElementById('cookie-banner');
