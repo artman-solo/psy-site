@@ -173,18 +173,32 @@ if (modalOverlay) {
     };
 }
 
-// 5. Модальное окно (Сертификаты)
-function openCert(src) {
+// 5. Модальные окна (Сертификаты)
+// Данные (добавьте сюда все ваши пути к фото)
+const certsData = [
+    { src: 'img/cert1.jpg' },
+    { src: 'img/cert2.jpg' },
+    { src: 'img/cert3.jpg' },
+    { src: 'img/cert4.jpg' } 
+];
+
+let currentModalIndex = 0;
+
+// Открытие модалки (теперь по индексу)
+function openCertByIndex(index) {
+    currentModalIndex = index;
     const modal = document.getElementById('cert-modal');
     const img = document.getElementById('cert-img');
+    
     if (modal && img) {
-        img.src = src;
+        img.src = certsData[currentModalIndex].src;
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         document.body.style.overflow = 'hidden';
     }
 }
 
+// Закрытие
 function closeCert() {
     const modal = document.getElementById('cert-modal');
     if (modal) {
@@ -192,6 +206,21 @@ function closeCert() {
         modal.classList.remove('flex');
         document.body.style.overflow = 'auto';
     }
+}
+
+// Листание (новая логика)
+function changeModalImg(step, event) {
+    if (event) event.stopPropagation(); // Чтобы модалка не закрылась при клике на стрелку
+    
+    const img = document.getElementById('cert-img');
+    img.style.opacity = '0'; // Плавное затухание
+    
+    setTimeout(() => {
+        // Вычисляем новый индекс (зациклено)
+        currentModalIndex = (currentModalIndex + step + certsData.length) % certsData.length;
+        img.src = certsData[currentModalIndex].src;
+        img.style.opacity = '1'; // Плавное появление
+    }, 200);
 }
 
 // 6. Логика баннера Cookies

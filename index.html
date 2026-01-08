@@ -107,22 +107,9 @@
                         <p class="text-sm italic">Регулярно участвую в супервизиях и интервизиях; являюсь участницей книжного клуба для психологов; дальнейшие обучения по психологии запланированы на год вперед.</p>
                         <div class="mt-8 border-t border-blue-50 pt-6">
                             <h3 class="text-lg font-serif text-slate-900 mb-4 italic">Образование и сертификаты</h3>
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                <div onclick="openCert('img/cert1.jpg')" class="group cursor-pointer">
-                                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-blue-100 shadow-sm transition-all group-hover:shadow-md group-hover:border-blue-300">
-                                        <img src="img/cert1.jpg" alt="Сертификат" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div id="certs-viewport" class="relative overflow-hidden min-h-[150px]">
+                                <div id="certs-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-4 transition-opacity duration-500">
                                     </div>
-                                </div>
-                                <div onclick="openCert('img/cert2.jpg')" class="group cursor-pointer">
-                                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-blue-100 shadow-sm transition-all group-hover:shadow-md group-hover:border-blue-300">
-                                        <img src="img/cert2.jpg" alt="Сертификат" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                    </div>
-                                </div>
-                                <div onclick="openCert('img/cert3.jpg')" class="group cursor-pointer">
-                                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-blue-100 shadow-sm transition-all group-hover:shadow-md group-hover:border-blue-300">
-                                        <img src="img/cert3.jpg" alt="Сертификат" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -509,10 +496,17 @@
         </div>
     </div>
 
-    <script src="js/scripts.js"></script>
-    <div id="cert-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-[100] hidden items-center justify-center p-4" onclick="closeCert()">
-        <button class="absolute top-5 right-5 text-white/70 hover:text-white text-4xl">&times;</button>
-        <img id="cert-img" src="" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl" onclick="event.stopPropagation()">
+    <div id="cert-modal" class="fixed inset-0 bg-slate-900/95 backdrop-blur-md z-[100] hidden items-center justify-center p-4 transition-all duration-300" onclick="closeCert()">
+        <button class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl transition-transform hover:scale-110">&times;</button>
+        
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 md:px-10">
+            <button onclick="event.stopPropagation(); changeModalImg(-1)" class="nav-btn text-white/70 text-4xl">&lsaquo;</button>
+            <button onclick="event.stopPropagation(); changeModalImg(1)" class="nav-btn text-white/70 text-4xl">&rsaquo;</button>
+        </div>
+        
+        <img id="cert-img" src="" class="max-w-[90%] max-h-[85vh] rounded-lg shadow-2xl transition-all duration-300 pointer-events-none border border-white/10" onclick="event.stopPropagation()">
     </div>
+
+    <script src="js/scripts.js"></script>
 </body>
 </html>
