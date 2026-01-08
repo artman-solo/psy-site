@@ -85,52 +85,45 @@ h1, h2, h3, .font-serif, .logo-font {
     animation: fadeIn 0.4s ease-out forwards; /* Плавное проявление за 0.4 сек */
 }
 
-/* Анимация появления карточек */
-.cert-card {
-    animation: fadeIn 0.8s ease forwards;
+/* --- СЕРТИФИКАТЫ: БЕСКОНЕЧНАЯ ЛЕНТА --- */
+
+/* 1. Окно просмотра (Viewport) */
+.cert-marquee-viewport {
+    width: 100%;
+    overflow: hidden;
+    padding: 25px 0; /* Отступы, чтобы карточки не "прилипали" к краям */
+    position: relative;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Стили стрелок в модалке */
-.nav-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    user-select: none;
-}
-
-.nav-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-/* Анимация движения */
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Смещаем на половину длины ленты */
-}
-
+/* 2. Лента с анимацией (Track) */
 #certs-track {
     display: flex;
-    width: max-content; /* Лента будет растягиваться под контент */
-    animation: marquee 30s linear infinite; /* 30 секунд на полный круг, чем меньше число, тем быстрее */
+    width: max-content;
+    /* Увеличиваем время до 80s для очень медленного движения */
+    animation: marquee 80s linear infinite; 
+    will-change: transform; /* Подсказка браузеру для плавной работы через видеокарту */
 }
 
-/* Остановка при наведении */
+/* 3. Остановка при наведении */
+/* Мы ставим паузу на весь контейнер, чтобы при наведении на любую карточку всё замирало */
 .cert-marquee-viewport:hover #certs-track {
     animation-play-state: paused;
 }
 
-/* Стили карточки внутри ленты */
+/* 4. Настройки карточки (размер 180px) */
 .marquee-item {
-    flex: 0 0 250px; /* Фиксированная ширина карточки */
+    flex: 0 0 180px; /* Фиксированная ширина карточки */
+    margin: 0 10px;  /* Расстояние между карточками */
+    transition: transform 0.4s ease; /* Плавное увеличение при наведении */
+}
+
+/* Легкое увеличение карточки при наведении */
+.marquee-item:hover {
+    transform: scale(1.05);
+}
+
+/* 5. Сама анимация движения */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
