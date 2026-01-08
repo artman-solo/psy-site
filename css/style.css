@@ -116,8 +116,26 @@ h1, h2, h3, .font-serif, .logo-font {
 
 /* 3. Остановка при наведении */
 /* Мы ставим паузу на весь контейнер, чтобы при наведении на любую карточку всё замирало */
-.cert-marquee-viewport:hover #certs-track {
-    animation-play-state: paused;
+/* Основной фикс для предотвращения растягивания экрана */
+.cert-marquee-viewport {
+    width: 100%;
+    max-width: 100vw; /* Строго не шире экрана */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Размер карточек для телефонов */
+.marquee-item {
+    flex: 0 0 140px; /* На мобильных еще меньше */
+    margin: 0 6px;
+}
+
+/* Размер карточек для планшетов и ПК */
+@media (min-width: 768px) {
+    .marquee-item {
+        flex: 0 0 180px; /* Возвращаем ваш размер для десктопа */
+        margin: 0 10px;
+    }
 }
 
 /* 4. Настройки карточки (размер 180px) */
@@ -148,4 +166,16 @@ h1, h2, h3, .font-serif, .logo-font {
 @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
+}
+
+/* Скрываем кнопки навигации на телефонах, так как теперь есть свайп */
+@media (max-width: 768px) {
+    .nav-btn {
+        display: none !important; /* Убираем кнопки, чтобы не закрывали фото */
+    }
+    
+    #cert-img {
+        touch-action: pan-y; /* Позволяет прокручивать страницу вертикально, но ловит свайпы по горизонтали */
+        max-width: 95%;     /* Чтобы края фото не прилипали к экрану при свайпе */
+    }
 }

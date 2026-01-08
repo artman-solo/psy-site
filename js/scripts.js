@@ -235,6 +235,42 @@ function changeModalImg(step, event) {
     }, 200);
 }
 
+// Переменные для отслеживания свайпа
+let touchStartX = 0;
+let touchEndX = 0;
+
+// Функция для обработки жеста
+function handleSwipe() {
+    const swipeThreshold = 50; // Минимальное расстояние для свайпа в пикселях
+    if (touchEndX < touchStartX - swipeThreshold) {
+        // Свайп влево — следующий сертификат
+        changeModalImg(1);
+    }
+    if (touchEndX > touchStartX + swipeThreshold) {
+        // Свайп вправо — предыдущий сертификат
+        changeModalImg(-1);
+    }
+}
+
+// Добавляем слушатели событий при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+    const modalImg = document.getElementById('cert-img');
+    
+    if (modalImg) {
+        modalImg.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        modalImg.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+    }
+    
+    // Инициализация ленты, как и была
+    initCertsMarquee();
+});
+
 // 6. Cookies и Инициализация карусели
 document.addEventListener('DOMContentLoaded', function() {
     initCertsMarquee(); // Запускаем ленту
