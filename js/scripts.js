@@ -173,17 +173,44 @@ if (modalOverlay) {
     };
 }
 
-// 5. Модальные окна (Сертификаты)
-// Данные сертификатов
+// 5. Сертификаты (Карусель превью и Модальное окно)
 const certsData = [
     { src: 'img/cert1.jpg' },
     { src: 'img/cert2.jpg' },
-    { src: 'img/cert3.jpg' } 
+    { src: 'img/cert3.jpg' },
+    { src: 'img/cert4.jpg' } // Добавьте свои файлы, если их больше
 ];
 
 let currentModalIndex = 0;
+let currentStartIndex = 0;
 
-// Открытие модалки (теперь по индексу)
+// 5.1 Отрисовка превью на странице
+function updateCertsUI() {
+    const grid = document.getElementById('certs-grid');
+    if (!grid) return;
+
+    grid.style.opacity = '0'; // Эффект плавного перехода
+
+    setTimeout(() => {
+        grid.innerHTML = '';
+        // Показываем 3 карточки
+        for (let i = 0; i < 3; i++) {
+            const index = (currentStartIndex + i) % certsData.length;
+            const cert = certsData[index];
+            
+            grid.innerHTML += `
+                <div onclick="openCertByIndex(${index})" class="group cursor-pointer transition-all duration-500">
+                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-blue-100 shadow-sm transition-all group-hover:shadow-md group-hover:border-blue-300">
+                        <img src="${cert.src}" alt="Сертификат" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                </div>
+            `;
+        }
+        grid.style.opacity = '1';
+    }, 300);
+}
+
+// 5.2 Управление модальным окном
 function openCertByIndex(index) {
     currentModalIndex = index;
     const modal = document.getElementById('cert-modal');
@@ -197,7 +224,6 @@ function openCertByIndex(index) {
     }
 }
 
-// Закрытие
 function closeCert() {
     const modal = document.getElementById('cert-modal');
     if (modal) {
@@ -207,28 +233,34 @@ function closeCert() {
     }
 }
 
-// Листание (новая логика)
 function changeModalImg(step, event) {
-    if (event) event.stopPropagation(); // Чтобы модалка не закрылась при клике на стрелку
-    
+    if (event) event.stopPropagation();
     const img = document.getElementById('cert-img');
-    img.style.opacity = '0'; // Плавное затухание
+    img.style.opacity = '0';
     
     setTimeout(() => {
-        // Вычисляем новый индекс (зациклено)
         currentModalIndex = (currentModalIndex + step + certsData.length) % certsData.length;
         img.src = certsData[currentModalIndex].src;
-        img.style.opacity = '1'; // Плавное появление
+        img.style.opacity = '1';
     }, 200);
 }
 
-// 6. Логика баннера Cookies
+// 6. Cookies и Инициализация карусели
 document.addEventListener('DOMContentLoaded', function() {
+    // Инициализация сертификатов
+    updateCertsUI();
+    
+    // Авто-прокрутка превью сертификатов каждые 5 секунд
+    setInterval(() => {
+        currentStartIndex = (currentStartIndex + 1) % certsData.length;
+        updateCertsUI();
+    }, 5000);
+
+    // Логика баннера Cookies
     const banner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('accept-cookies');
 
     if (banner && acceptBtn) {
-        // Проверяем, принимал ли уже пользователь куки
         if (!localStorage.getItem('cookiesAccepted')) {
             setTimeout(() => {
                 banner.classList.remove('translate-y-full');
