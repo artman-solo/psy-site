@@ -91,7 +91,10 @@ h1, h2, h3, .font-serif, .logo-font {
 .cert-marquee-viewport {
     width: 100%;
     overflow: hidden;
-    padding: 25px 0; /* Отступы, чтобы карточки не "прилипали" к краям */
+    /* Устанавливаем цвет фона как у страницы */
+    background-color: #e5e7eb; 
+    /* Убираем лишнюю высоту, оставляем только небольшой зазор для теней */
+    padding: 10px 0; 
     position: relative;
 }
 
@@ -99,9 +102,10 @@ h1, h2, h3, .font-serif, .logo-font {
 #certs-track {
     display: flex;
     width: max-content;
-    /* Увеличиваем время до 80s для очень медленного движения */
     animation: marquee 80s linear infinite; 
-    will-change: transform; /* Подсказка браузеру для плавной работы через видеокарту */
+    will-change: transform;
+    /* Убираем фон здесь, чтобы он наследовался от вьюпорта */
+    background: transparent; 
 }
 
 /* 3. Остановка при наведении */
@@ -112,9 +116,21 @@ h1, h2, h3, .font-serif, .logo-font {
 
 /* 4. Настройки карточки (размер 180px) */
 .marquee-item {
-    flex: 0 0 180px; /* Фиксированная ширина карточки */
-    margin: 0 10px;  /* Расстояние между карточками */
-    transition: transform 0.4s ease; /* Плавное увеличение при наведении */
+    flex: 0 0 160px; /* Еще немного уменьшили ширину для компактности */
+    margin: 0 8px;   /* Просвет между карточками */
+    transition: transform 0.4s ease;
+}
+
+/* Настраиваем высоту изображений внутри, чтобы они были аккуратными */
+.marquee-item img {
+    height: auto;
+    max-height: 120px; /* Ограничиваем высоту самих картинок */
+    width: 100%;
+    object-fit: cover;
+}
+
+.cert-marquee-viewport:hover #certs-track {
+    animation-play-state: paused;
 }
 
 /* Легкое увеличение карточки при наведении */
