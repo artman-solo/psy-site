@@ -91,11 +91,17 @@ h1, h2, h3, .font-serif, .logo-font {
 .cert-marquee-viewport {
     width: 100%;
     overflow: hidden;
-    /* Устанавливаем цвет фона как у страницы */
-    background-color: #e5e7eb; 
-    /* Убираем лишнюю высоту, оставляем только небольшой зазор для теней */
+    /* Убираем серый цвет, делаем прозрачным, чтобы видеть фон секции */
+    background: transparent; 
     padding: 10px 0; 
     position: relative;
+}
+
+/* Исправляем боковые градиенты, чтобы они не были белыми */
+.cert-marquee-viewport .absolute.bg-gradient-to-r {
+    /* Градиент от прозрачного фона секции к полностью прозрачному */
+    background: linear-gradient(to right, rgba(255,255,255,0.8), transparent);
+    display: none; /* Или просто удалите эти div из HTML, если они мешают */
 }
 
 /* 2. Лента с анимацией (Track) */
