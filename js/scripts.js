@@ -174,12 +174,11 @@ if (modalOverlay) {
 }
 
 // 5. Модальные окна (Сертификаты)
-// Данные (добавьте сюда все ваши пути к фото)
+// Данные сертификатов
 const certsData = [
     { src: 'img/cert1.jpg' },
     { src: 'img/cert2.jpg' },
-    { src: 'img/cert3.jpg' },
-    { src: 'img/cert4.jpg' } 
+    { src: 'img/cert3.jpg' } 
 ];
 
 let currentModalIndex = 0;
