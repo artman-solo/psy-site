@@ -1,21 +1,21 @@
 // 1. Инициализация и отправка формы (EmailJS)
-(function() { 
+(function () {
     emailjs.init("QTfMoRQNuslYMT_AZ"); // ЗАМЕНИТЕ НА ВАШ КЛЮЧ
 })();
 
 const contactForm = document.getElementById('email-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        
+
         const btn = document.getElementById('submit-btn');
         const success = document.getElementById('success-screen');
-        
-        btn.disabled = true; 
+
+        btn.disabled = true;
         btn.innerText = "Отправка...";
-        
+
         emailjs.sendForm('service_f38c7mr', 'template_i7r0e5h', this) // ЗАМЕНИТЕ НА ВАШИ ID
-            .then(() => { 
+            .then(() => {
                 // Показываем экран успеха
                 if (success) {
                     success.classList.remove('hidden');
@@ -35,10 +35,10 @@ if (contactForm) {
                     btn.innerText = "Отправить запрос";
                 }, 5000);
             })
-            .catch((error) => { 
-                alert("Ошибка при отправке."); 
-                btn.disabled = false; 
-                btn.innerText = "Отправить запрос"; 
+            .catch((error) => {
+                alert("Ошибка при отправке.");
+                btn.disabled = false;
+                btn.innerText = "Отправить запрос";
             });
     });
 }
@@ -168,17 +168,42 @@ function closeModal() {
 // Тапаут для статей
 const modalOverlay = document.getElementById('modal-overlay');
 if (modalOverlay) {
-    modalOverlay.onclick = function(e) {
+    modalOverlay.onclick = function (e) {
         if (e.target === this) closeModal();
     };
 }
 
 // 5. Сертификаты (Бесконечная лента и Модалка)
 const certsData = [
-    { src: 'img/cert1.jpg' },
-    { src: 'img/cert2.jpg' },
-    { src: 'img/cert3.jpg' },
-    { src: 'img/cert4.jpg' }
+    { src: 'img/cert0.webp' },
+    { src: 'img/cert1.webp' },
+    { src: 'img/cert2.webp' },
+    { src: 'img/cert3.webp' },
+    { src: 'img/cert4.webp' },
+    { src: 'img/cert5.webp' },
+    { src: 'img/cert6.webp' },
+    { src: 'img/cert7.webp' },
+    { src: 'img/cert8.webp' },
+    { src: 'img/cert9.webp' },
+    { src: 'img/cert10.webp' },
+    { src: 'img/cert11.webp' },
+    { src: 'img/cert12.webp' },
+    { src: 'img/cert13.webp' },
+    { src: 'img/cert14.webp' },
+    { src: 'img/cert15.webp' },
+    { src: 'img/cert16.webp' },
+    { src: 'img/cert17.webp' },
+    { src: 'img/cert18.webp' },
+    { src: 'img/cert19.webp' },
+    { src: 'img/cert20.webp' },
+    { src: 'img/cert21.webp' },
+    { src: 'img/cert22.webp' },
+    { src: 'img/cert23.webp' },
+    { src: 'img/cert24.webp' },
+    { src: 'img/cert25.webp' },
+    { src: 'img/cert26.webp' },
+    { src: 'img/cert27.webp' },
+    { src: 'img/cert28.webp' }
 ];
 
 let currentModalIndex = 0;
@@ -190,7 +215,7 @@ function initCertsMarquee() {
 
     // Дублируем массив для бесконечного эффекта
     const doubleCerts = [...certsData, ...certsData];
-    
+
     track.innerHTML = doubleCerts.map((cert, index) => `
         <div class="marquee-item group cursor-pointer px-2" onclick="openCertByIndex(${index % certsData.length})">
             <div class="aspect-[4/3] overflow-hidden rounded-xl border border-blue-100 shadow-sm transition-all group-hover:shadow-lg group-hover:border-blue-300">
@@ -205,7 +230,7 @@ function openCertByIndex(index) {
     currentModalIndex = index;
     const modal = document.getElementById('cert-modal');
     const img = document.getElementById('cert-img');
-    
+
     if (modal && img) {
         img.src = certsData[currentModalIndex].src;
         modal.classList.remove('hidden');
@@ -227,7 +252,7 @@ function changeModalImg(step, event) {
     if (event) event.stopPropagation();
     const img = document.getElementById('cert-img');
     img.style.opacity = '0';
-    
+
     setTimeout(() => {
         currentModalIndex = (currentModalIndex + step + certsData.length) % certsData.length;
         img.src = certsData[currentModalIndex].src;
@@ -252,61 +277,45 @@ function handleSwipe() {
     }
 }
 
-// Добавляем слушатели событий при загрузке
+// 6. Единая инициализация (Android & iOS)
 document.addEventListener('DOMContentLoaded', () => {
+    // 6.1 Запуск ленты сертификатов
+    initCertsMarquee();
+
+    // 6.2 Настройка свайпа и защиты картинки
     const modalImg = document.getElementById('cert-img');
-    
     if (modalImg) {
         modalImg.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
 
-        modalImg.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-    }
-    
-    // Инициализация ленты, как и была
-    initCertsMarquee();
-});
-
-// 6. Инициализация (Android & iOS)
-document.addEventListener('DOMContentLoaded', () => {
-    initCertsMarquee();
-
-    const modalImg = document.getElementById('cert-img');
-    
-    if (modalImg) {
-        // Начало касания
-        modalImg.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        // Во время движения (блокируем прокрутку страницы, если свайпаем по картинке)
+        // Блокируем скролл страницы только при горизонтальном свайпе (для Android)
         modalImg.addEventListener('touchmove', e => {
-            if (e.cancelable) e.preventDefault(); 
+            let moveX = e.changedTouches[0].screenX;
+            if (Math.abs(touchStartX - moveX) > 10) {
+                if (e.cancelable) e.preventDefault();
+            }
         }, { passive: false });
 
-        // Конец касания
         modalImg.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         }, { passive: true });
+
+        // Запрещаем системное перетаскивание картинки
+        modalImg.ondragstart = () => false;
     }
-    
-    // Баннер Cookies
+
+    // 6.3 Логика баннера Cookies
     const banner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('accept-cookies');
-
     if (banner && acceptBtn) {
         if (!localStorage.getItem('cookiesAccepted')) {
             setTimeout(() => {
                 banner.classList.remove('translate-y-full');
             }, 1000);
         }
-
-        acceptBtn.onclick = function() {
+        acceptBtn.onclick = function () {
             localStorage.setItem('cookiesAccepted', 'true');
             banner.classList.add('translate-y-full');
         };
