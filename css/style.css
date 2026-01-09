@@ -1,3 +1,31 @@
+/* 1. Глобальный сброс для Safari */
+html, body {
+    overflow-x: hidden; /* Запрещает горизонтальный скролл всего сайта */
+    width: 100%;
+    -webkit-text-size-adjust: 100%; /* Запрещает Safari самовольно менять размер шрифта */
+}
+
+/* 2. Фикс Hero-секции и всех картинок */
+img {
+    max-width: 100%; /* Картинка никогда не будет шире экрана */
+    height: auto;
+    display: block;
+}
+
+/* 3. Фикс сетки (Grid) для старых Safari */
+.grid {
+    display: -ms-grid;
+    display: grid;
+}
+
+/* 4. Принудительное ограничение контейнера */
+.max-w-6xl, .container {
+    width: 100% !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    box-sizing: border-box !important;
+}
+
 /* --- БАЗОВЫЕ НАСТРОЙКИ ШРИФТОВ И СКРОЛЛА --- */
 body { 
     font-family: 'Inter', sans-serif; 
