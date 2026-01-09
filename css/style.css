@@ -85,97 +85,98 @@ h1, h2, h3, .font-serif, .logo-font {
     animation: fadeIn 0.4s ease-out forwards; /* Плавное проявление за 0.4 сек */
 }
 
-/* --- СЕРТИФИКАТЫ: БЕСКОНЕЧНАЯ ЛЕНТА --- */
+/* --- СЕРТИФИКАТЫ: БЕСКОНЕЧНАЯ ЛЕНТА (ФИНАЛЬНАЯ ВЕРСИЯ) --- */
 
 /* 1. Окно просмотра (Viewport) */
 .cert-marquee-viewport {
     width: 100%;
+    max-width: 100vw;
     overflow: hidden;
-    /* Убираем серый цвет, делаем прозрачным, чтобы видеть фон секции */
-    background: transparent; 
-    padding: 10px 0; 
+    background: transparent;
+    padding: 10px 0;
     position: relative;
+    /* Ускорение рендеринга для Safari */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
-/* Исправляем боковые градиенты, чтобы они не были белыми */
-.cert-marquee-viewport .absolute.bg-gradient-to-r {
-    /* Градиент от прозрачного фона секции к полностью прозрачному */
-    background: linear-gradient(to right, rgba(255,255,255,0.8), transparent);
-    display: none; /* Или просто удалите эти div из HTML, если они мешают */
-}
-
-/* 2. Лента с анимацией (Track) */
+/* 2. Лента (Track) */
 #certs-track {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    width: -webkit-max-content;
     width: max-content;
+    background: transparent;
+    /* Если вы используете JS для скролла, анимацию в CSS нужно убрать. 
+       Если оставили CSS-анимацию, то строка ниже: */
     animation: marquee 80s linear infinite; 
     will-change: transform;
-    /* Убираем фон здесь, чтобы он наследовался от вьюпорта */
-    background: transparent; 
 }
 
-/* 3. Остановка при наведении */
-/* Мы ставим паузу на весь контейнер, чтобы при наведении на любую карточку всё замирало */
-/* Основной фикс для предотвращения растягивания экрана */
-.cert-marquee-viewport {
-    width: 100%;
-    max-width: 100vw; /* Строго не шире экрана */
-    overflow: hidden;
-    position: relative;
+/* Остановка при наведении (только для устройств с мышкой) */
+@media (hover: hover) {
+    .cert-marquee-viewport:hover #certs-track {
+        animation-play-state: paused;
+    }
 }
 
-/* Размер карточек для телефонов */
+/* 3. Карточки (Адаптивные размеры) */
 .marquee-item {
-    flex: 0 0 140px; /* На мобильных еще меньше */
-    margin: 0 6px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 140px;
+    flex: 0 0 140px; /* Размер для мобильных */
+    margin: 0 8px;
+    transition: transform 0.4s ease;
+    -webkit-transition: -webkit-transform 0.4s ease;
 }
 
-/* Размер карточек для планшетов и ПК */
 @media (min-width: 768px) {
     .marquee-item {
-        flex: 0 0 180px; /* Возвращаем ваш размер для десктопа */
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 180px;
+        flex: 0 0 180px; /* Размер для ПК */
         margin: 0 10px;
     }
 }
 
-/* 4. Настройки карточки (размер 180px) */
-.marquee-item {
-    flex: 0 0 160px; /* Еще немного уменьшили ширину для компактности */
-    margin: 0 8px;   /* Просвет между карточками */
-    transition: transform 0.4s ease;
-}
-
-/* Настраиваем высоту изображений внутри, чтобы они были аккуратными */
 .marquee-item img {
-    height: auto;
-    max-height: 120px; /* Ограничиваем высоту самих картинок */
+    display: block;
     width: 100%;
+    height: auto;
+    max-height: 120px;
     object-fit: cover;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
 }
 
-.cert-marquee-viewport:hover #certs-track {
-    animation-play-state: paused;
-}
-
-/* Легкое увеличение карточки при наведении */
+/* Эффект при наведении */
 .marquee-item:hover {
     transform: scale(1.05);
+    -webkit-transform: scale(1.05);
 }
 
-/* 5. Сама анимация движения */
+/* 4. Анимация */
 @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
-/* Скрываем кнопки навигации на телефонах, так как теперь есть свайп */
+@-webkit-keyframes marquee {
+    0% { -webkit-transform: translateX(0); }
+    100% { -webkit-transform: translateX(-50%); }
+}
+
+/* 5. Модальное окно (Адаптация) */
 @media (max-width: 768px) {
     .nav-btn {
-        display: none !important; /* Убираем кнопки, чтобы не закрывали фото */
+        display: none !important; 
     }
     
     #cert-img {
-        touch-action: pan-y; /* Позволяет прокручивать страницу вертикально, но ловит свайпы по горизонтали */
-        max-width: 95%;     /* Чтобы края фото не прилипали к экрану при свайпе */
+        /* Разрешаем свайп и запрещаем системные жесты Safari */
+        touch-action: none; 
+        max-width: 90%;
+        height: auto;
     }
 }

@@ -271,11 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initCertsMarquee();
 });
 
-// 6. Cookies и Инициализация карусели
+// 6. Единая инициализация для стабильной работы в Safari
 document.addEventListener('DOMContentLoaded', function() {
-    initCertsMarquee(); // Запускаем ленту
-
-    // Логика баннера Cookies
+    // Баннер Cookies
     const banner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('accept-cookies');
 
@@ -286,9 +284,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1000);
         }
 
-        acceptBtn.addEventListener('click', function() {
+        acceptBtn.onclick = function() {
             localStorage.setItem('cookiesAccepted', 'true');
             banner.classList.add('translate-y-full');
-        });
+        };
     }
 });
