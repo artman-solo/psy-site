@@ -320,4 +320,37 @@ document.addEventListener('DOMContentLoaded', () => {
             banner.classList.add('translate-y-full');
         };
     }
+
+    // 8. Динамический счетчик опыта
+    const experienceElement = document.getElementById('experience-years');
+    if (experienceElement) {
+        const startYear = parseInt(experienceElement.getAttribute('data-target'));
+        const currentYear = new Date().getFullYear();
+        const targetYears = currentYear - startYear; // Авто-вычисление (сейчас будет 16)
+
+        // Функция анимации цифр
+        const animateCounter = () => {
+            let start = 0;
+            const duration = 2000; // 2 секунды на анимацию
+            const stepTime = Math.abs(Math.floor(duration / targetYears));
+            
+            const timer = setInterval(() => {
+                start += 1;
+                experienceElement.innerText = start;
+                if (start === targetYears) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
+        };
+
+        // Запуск анимации только когда пользователь доскроллил до блока
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateCounter();
+                observer.unobserve(experienceElement); // Запускаем только один раз
+            }
+        }, { threshold: 0.5 });
+
+        observer.observe(experienceElement);
+    }
 });
