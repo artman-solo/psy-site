@@ -271,8 +271,30 @@ document.addEventListener('DOMContentLoaded', () => {
     initCertsMarquee();
 });
 
-// 6. Единая инициализация для стабильной работы в Safari
-document.addEventListener('DOMContentLoaded', function() {
+// 6. Инициализация (Android & iOS)
+document.addEventListener('DOMContentLoaded', () => {
+    initCertsMarquee();
+
+    const modalImg = document.getElementById('cert-img');
+    
+    if (modalImg) {
+        // Начало касания
+        modalImg.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        // Во время движения (блокируем прокрутку страницы, если свайпаем по картинке)
+        modalImg.addEventListener('touchmove', e => {
+            if (e.cancelable) e.preventDefault(); 
+        }, { passive: false });
+
+        // Конец касания
+        modalImg.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+    }
+    
     // Баннер Cookies
     const banner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('accept-cookies');

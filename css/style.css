@@ -197,14 +197,32 @@ h1, h2, h3, .font-serif, .logo-font {
 
 /* 5. Модальное окно (Адаптация) */
 @media (max-width: 768px) {
+    /* Принудительно показываем стрелки */
     .nav-btn {
-        display: none !important; 
+        display: flex !important; 
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.9) !important;
+        color: #1e293b !important;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    
+
+    .nav-btn:first-of-type { left: 8px; }
+    .nav-btn:last-of-type { right: 8px; }
+
     #cert-img {
-        /* Разрешаем свайп и запрещаем системные жесты Safari */
+        max-width: 85% !important; /* Даем место для стрелок по бокам */
+        max-height: 80vh;
+        object-fit: contain;
+        /* Запрещаем браузеру пытаться "тащить" картинку как файл */
         touch-action: none; 
-        max-width: 90%;
-        height: auto;
+        -webkit-user-drag: none;
     }
 }
