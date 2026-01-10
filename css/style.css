@@ -130,16 +130,20 @@ h1, h2, h3, .font-serif, .logo-font {
 
 /* 2. Лента (Track) */
 #certs-track {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    width: -webkit-max-content;
     width: max-content;
-    background: transparent;
-    /* Если вы используете JS для скролла, анимацию в CSS нужно убрать. 
-       Если оставили CSS-анимацию, то строка ниже: */
-    animation: marquee 80s linear infinite; 
-    will-change: transform;
+    /* Увеличиваем время (например, 60s вместо 30s) для медленного хода */
+    animation: marquee 60s linear infinite; 
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Остановка при наведении — так пользователю будет удобнее рассмотреть */
+.cert-marquee-viewport:hover #certs-track {
+    animation-play-state: paused;
 }
 
 /* Остановка при наведении (только для устройств с мышкой) */
@@ -199,23 +203,30 @@ h1, h2, h3, .font-serif, .logo-font {
 @media (max-width: 768px) {
     /* Принудительно показываем стрелки */
     .nav-btn {
-        display: flex !important; 
+        display: flex !important;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         z-index: 100;
-        background: rgba(255, 255, 255, 0.9) !important;
-        color: #1e293b !important;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        background: transparent !important; /* Убираем круг */
+        color: white !important; /* Белые стрелки */
+        font-size: 2rem;
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+        padding: 20px; /* Увеличим область нажатия */
     }
 
-    .nav-btn:first-of-type { left: 8px; }
-    .nav-btn:last-of-type { right: 8px; }
+    .nav-btn:hover {
+        opacity: 1;
+    }
+
+    /* Тень для стрелок, чтобы их было видно на светлых фото */
+    .nav-btn i {
+        text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .nav-btn:first-of-type { left: 0; }
+    .nav-btn:last-of-type { right: 0; }
 
     #cert-img {
         max-width: 85% !important; /* Даем место для стрелок по бокам */

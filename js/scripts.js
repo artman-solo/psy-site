@@ -202,8 +202,7 @@ const certsData = [
     { src: 'img/cert24.webp' },
     { src: 'img/cert25.webp' },
     { src: 'img/cert26.webp' },
-    { src: 'img/cert27.webp' },
-    { src: 'img/cert28.webp' }
+    { src: 'img/cert27.webp' }
 ];
 
 let currentModalIndex = 0;
@@ -216,10 +215,11 @@ function initCertsMarquee() {
     // Дублируем массив для бесконечного эффекта
     const doubleCerts = [...certsData, ...certsData];
 
+    // Внутри track.innerHTML = ...
     track.innerHTML = doubleCerts.map((cert, index) => `
-        <div class="marquee-item group cursor-pointer px-2" onclick="openCertByIndex(${index % certsData.length})">
-            <div class="aspect-[4/3] overflow-hidden rounded-xl border border-blue-100 shadow-sm transition-all group-hover:shadow-lg group-hover:border-blue-300">
-                <img src="${cert.src}" alt="Сертификат" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="marquee-item cursor-pointer px-3" onclick="openCertByIndex(${index % certsData.length})">
+            <div class="w-[200px] h-[150px] overflow-hidden rounded-lg shadow-sm transition-transform duration-300 hover:scale-105">
+                <img src="${cert.src}" alt="Сертификат" class="w-full h-full object-cover">
             </div>
         </div>
     `).join('');
