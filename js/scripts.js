@@ -212,13 +212,14 @@ function initCertsMarquee() {
     const track = document.getElementById('certs-track');
     if (!track) return;
 
-    // Дублируем массив для бесконечного эффекта
     const doubleCerts = [...certsData, ...certsData];
 
     track.innerHTML = doubleCerts.map((cert, index) => `
         <div class="marquee-item cursor-pointer px-3" onclick="openCertByIndex(${index % certsData.length})">
-            <div class="w-[220px] h-[160px] bg-white overflow-hidden rounded-lg shadow-sm transition-transform duration-300 hover:scale-105 border border-slate-100">
-                <img src="${cert.src}" alt="Сертификат" class="w-full h-full object-cover">
+            <div style="width: 220px; height: 160px; overflow: hidden; border-radius: 12px; background: #f8fafc; border: 1px solid #e2e8f0; position: relative;">
+                <img src="${cert.src}" 
+                     alt="Сертификат" 
+                     style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important;">
             </div>
         </div>
     `).join('');
@@ -229,21 +230,27 @@ function openCertByIndex(index) {
     currentModalIndex = index;
     const modal = document.getElementById('cert-modal');
     const img = document.getElementById('cert-img');
+    const track = document.getElementById('certs-track');
 
     if (modal && img) {
         img.src = certsData[currentModalIndex].src;
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         document.body.style.overflow = 'hidden';
+        // Останавливаем ленту
+        if (track) track.style.animationPlayState = 'paused';
     }
 }
 
 function closeCert() {
     const modal = document.getElementById('cert-modal');
+    const track = document.getElementById('certs-track');
     if (modal) {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
         document.body.style.overflow = 'auto';
+        // Запускаем ленту
+        if (track) track.style.animationPlayState = 'running';
     }
 }
 
