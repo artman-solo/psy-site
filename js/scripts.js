@@ -216,7 +216,7 @@ function initCertsMarquee() {
 
     track.innerHTML = doubleCerts.map((cert, index) => `
         <div class="marquee-item cursor-pointer px-3" onclick="openCertByIndex(${index % certsData.length})">
-            <div style="width: 220px; height: 160px; overflow: hidden; border-radius: 12px; background: #f8fafc; border: 1px solid #e2e8f0; position: relative;">
+            <div style="width: 220px; height: 110px; overflow: hidden; border-radius: 12px; background: #f8fafc; border: 1px solid #e2e8f0; position: relative;">
                 <img src="${cert.src}" 
                      alt="Сертификат" 
                      style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important;">

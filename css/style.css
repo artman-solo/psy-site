@@ -175,7 +175,7 @@ h1, h2, h3, .font-serif, .logo-font {
 .marquee-item img {
     display: block;
     width: 100% !important;
-    height: 160px !important; /* Указываем высоту ячейки принудительно */
+    height: 110px !important; /* Указываем высоту ячейки принудительно */
     object-fit: cover;        /* Обрезает края, заполняя всё пространство без дыр */
     border-radius: 12px;
     -webkit-border-radius: 12px;
