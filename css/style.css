@@ -133,7 +133,7 @@ h1, h2, h3, .font-serif, .logo-font {
     display: flex;
     width: max-content;
     /* Увеличиваем время (например, 60s вместо 30s) для медленного хода */
-    animation: marquee 60s linear infinite; 
+    animation: marquee 70s linear infinite; 
 }
 
 @keyframes marquee {

@@ -215,10 +215,9 @@ function initCertsMarquee() {
     // Дублируем массив для бесконечного эффекта
     const doubleCerts = [...certsData, ...certsData];
 
-    // Внутри track.innerHTML = ...
     track.innerHTML = doubleCerts.map((cert, index) => `
         <div class="marquee-item cursor-pointer px-3" onclick="openCertByIndex(${index % certsData.length})">
-            <div class="w-[200px] h-[150px] overflow-hidden rounded-lg shadow-sm transition-transform duration-300 hover:scale-105">
+            <div class="w-[220px] h-[160px] bg-white overflow-hidden rounded-lg shadow-sm transition-transform duration-300 hover:scale-105 border border-slate-100">
                 <img src="${cert.src}" alt="Сертификат" class="w-full h-full object-cover">
             </div>
         </div>
@@ -321,36 +320,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // 8. Динамический счетчик опыта
+    // 8. Автоматический расчет опыта (мгновенное отображение)
     const experienceElement = document.getElementById('experience-years');
     if (experienceElement) {
         const startYear = parseInt(experienceElement.getAttribute('data-target'));
         const currentYear = new Date().getFullYear();
-        const targetYears = currentYear - startYear; // Авто-вычисление (сейчас будет 16)
-
-        // Функция анимации цифр
-        const animateCounter = () => {
-            let start = 0;
-            const duration = 2000; // 2 секунды на анимацию
-            const stepTime = Math.abs(Math.floor(duration / targetYears));
-            
-            const timer = setInterval(() => {
-                start += 1;
-                experienceElement.innerText = start;
-                if (start === targetYears) {
-                    clearInterval(timer);
-                }
-            }, stepTime);
-        };
-
-        // Запуск анимации только когда пользователь доскроллил до блока
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                animateCounter();
-                observer.unobserve(experienceElement); // Запускаем только один раз
-            }
-        }, { threshold: 0.5 });
-
-        observer.observe(experienceElement);
+        // Просто подставляем результат вычитания сразу
+        experienceElement.textContent = currentYear - startYear;
     }
 });
