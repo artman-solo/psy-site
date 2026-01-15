@@ -147,12 +147,20 @@ if (track && container) {
 // 4. Модальные окна (Статьи)
 function openModal(id) {
     const overlay = document.getElementById('modal-overlay');
-    if (overlay) {
+    const targetArticle = document.getElementById(id);
+    
+    if (overlay && targetArticle) {
+        // 1. Сначала прячем все статьи (на случай, если какая-то осталась открытой)
+        document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
+        
+        // 2. Показываем оверлей и конкретную статью
         overlay.classList.remove('hidden');
         overlay.classList.add('flex');
-        document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
-        document.getElementById(id).classList.remove('hidden');
+        targetArticle.classList.remove('hidden');
+        
+        // 3. Блокируем скролл на двух уровнях (для надежности на iOS)
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
     }
 }
 
@@ -161,16 +169,25 @@ function closeModal() {
     if (overlay) {
         overlay.classList.add('hidden');
         overlay.classList.remove('flex');
-        document.body.style.overflow = 'auto';
+        
+        // ГЛАВНОЕ: Прячем контент, чтобы при следующем открытии не было багов
+        document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
+        
+        // Возвращаем скролл
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
     }
 }
 
-// Тапаут для статей
+// Тапаут (клик по фону)
 const modalOverlay = document.getElementById('modal-overlay');
 if (modalOverlay) {
-    modalOverlay.onclick = function (e) {
-        if (e.target === this) closeModal();
-    };
+    modalOverlay.addEventListener('click', function (e) {
+        // Проверяем, что клик был именно по фону, а не по самой статье
+        if (e.target === this) {
+            closeModal();
+        }
+    });
 }
 
 // 5. Сертификаты (Бесконечная лента и Модалка)

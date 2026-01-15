@@ -309,15 +309,14 @@
             <div class="max-w-6xl mx-auto px-6 relative z-10">
                 <div class="mb-12">
                     <h2 class="text-3xl md:text-4xl text-slate-900 font-serif mb-4 text-center">Статьи и размышления</h2>
-                    <p class="text-slate-600 text-center max-w-2xl mx-auto">Нажмите на карточку, чтобы прочитать статью полностью, не покидая сайт.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <article onclick="openModal('article-1')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
                         <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Первый год в эмиграции</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3">Разбираем основные этапы психологической адаптации и способы поддержки себя...</p>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Когда появляется право быть собой</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3">История внутреннего взросления через терапию...</p>
                         <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
                     </article>
                     <article onclick="openModal('article-2')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
@@ -336,6 +335,30 @@
                         <p class="text-slate-600 text-sm line-clamp-3">Разбираем основные чувства и эмоции...</p>
                         <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
                     </article>
+                    <article onclick="openModal('article-4')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
+                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Первый год в эмиграции</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3">Разбираем основные этапы психологической адаптации и способы поддержки себя...</p>
+                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
+                    </article>
+                    <article onclick="openModal('article-5')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
+                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Язык образов</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3">Почему рисунки и внутренние образы иногда говорят больше, чем тысячи слов...</p>
+                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
+                    </article>
+                    <article onclick="openModal('article-6')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
+                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Работа с чувствами и эмоциями</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3">Разбираем основные чувства и эмоции...</p>
+                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
+                    </article>
                 </div>
             </div>
         </section>
@@ -343,11 +366,11 @@
             <div id="article-1" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
                 <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
                 <div class="mt-4">
-                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Адаптация</span>
-                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Первый год в эмиграции: как не потерять себя</h2>
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Быть собой</span>
+                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Когда появляется право быть собой</h2>
                     <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
-                        <p>Здесь будет ваш полный текст статьи...</p>
-                        <p>Эмиграция — это не только физический переезд, но и глубокая психологическая трансформация.</p>
+                        <p><em>Мысли и анализ опыта работы с клиенткой. Некоторые сведения изменены для анонимности. И хочу поблагодарить моих клиентов за наш совместный путь и опыт, который многому учит меня.</em></p>
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -362,6 +385,37 @@
                 </div>
             </div>
             <div id="article-3" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
+                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <div class="mt-4">
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Внутренние переживания</span>
+                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Стыд, вина, обида</h2>
+                    <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
+                        <p>Полный текст третьей статьи...</p>
+                    </div>
+                </div>
+            </div>
+            <div id="article-4" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
+                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <div class="mt-4">
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Адаптация</span>
+                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Первый год в эмиграции: как не потерять себя</h2>
+                    <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
+                        <p>Здесь будет ваш полный текст статьи...</p>
+                        <p>Эмиграция — это не только физический переезд, но и глубокая психологическая трансформация.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="article-5" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
+                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <div class="mt-4">
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Методы</span>
+                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Язык образов в терапии</h2>
+                    <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
+                        <p>Полный текст второй статьи...</p>
+                    </div>
+                </div>
+            </div>
+            <div id="article-6" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
                 <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
                 <div class="mt-4">
                     <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Внутренние переживания</span>
