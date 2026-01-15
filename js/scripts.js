@@ -148,16 +148,16 @@ if (track && container) {
 function openModal(id) {
     const overlay = document.getElementById('modal-overlay');
     const targetArticle = document.getElementById(id);
-    
+
     if (overlay && targetArticle) {
         // 1. Сначала прячем все статьи (на случай, если какая-то осталась открытой)
         document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
-        
+
         // 2. Показываем оверлей и конкретную статью
         overlay.classList.remove('hidden');
         overlay.classList.add('flex');
         targetArticle.classList.remove('hidden');
-        
+
         // 3. Блокируем скролл на двух уровнях (для надежности на iOS)
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
@@ -169,10 +169,10 @@ function closeModal() {
     if (overlay) {
         overlay.classList.add('hidden');
         overlay.classList.remove('flex');
-        
+
         // ГЛАВНОЕ: Прячем контент, чтобы при следующем открытии не было багов
         document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
-        
+
         // Возвращаем скролл
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
@@ -192,34 +192,34 @@ if (modalOverlay) {
 
 // 5. Сертификаты (Бесконечная лента и Модалка)
 const certsData = [
-    { src: 'img/cert0.webp' },
-    { src: 'img/cert1.webp' },
-    { src: 'img/cert2.webp' },
-    { src: 'img/cert3.webp' },
-    { src: 'img/cert4.webp' },
-    { src: 'img/cert5.webp' },
-    { src: 'img/cert6.webp' },
-    { src: 'img/cert7.webp' },
-    { src: 'img/cert8.webp' },
-    { src: 'img/cert9.webp' },
-    { src: 'img/cert10.webp' },
-    { src: 'img/cert11.webp' },
-    { src: 'img/cert12.webp' },
-    { src: 'img/cert13.webp' },
-    { src: 'img/cert14.webp' },
-    { src: 'img/cert15.webp' },
-    { src: 'img/cert16.webp' },
-    { src: 'img/cert17.webp' },
-    { src: 'img/cert18.webp' },
-    { src: 'img/cert19.webp' },
-    { src: 'img/cert20.webp' },
-    { src: 'img/cert21.webp' },
-    { src: 'img/cert22.webp' },
-    { src: 'img/cert23.webp' },
-    { src: 'img/cert24.webp' },
-    { src: 'img/cert25.webp' },
-    { src: 'img/cert26.webp' },
-    { src: 'img/cert27.webp' }
+    { src: 'img/certs/cert0.webp' },
+    { src: 'img/certs/cert1.webp' },
+    { src: 'img/certs/cert2.webp' },
+    { src: 'img/certs/cert3.webp' },
+    { src: 'img/certs/cert4.webp' },
+    { src: 'img/certs/cert5.webp' },
+    { src: 'img/certs/cert6.webp' },
+    { src: 'img/certs/cert7.webp' },
+    { src: 'img/certs/cert8.webp' },
+    { src: 'img/certs/cert9.webp' },
+    { src: 'img/certs/cert10.webp' },
+    { src: 'img/certs/cert11.webp' },
+    { src: 'img/certs/cert12.webp' },
+    { src: 'img/certs/cert13.webp' },
+    { src: 'img/certs/cert14.webp' },
+    { src: 'img/certs/cert15.webp' },
+    { src: 'img/certs/cert16.webp' },
+    { src: 'img/certs/cert17.webp' },
+    { src: 'img/certs/cert18.webp' },
+    { src: 'img/certs/cert19.webp' },
+    { src: 'img/certs/cert20.webp' },
+    { src: 'img/certs/cert21.webp' },
+    { src: 'img/certs/cert22.webp' },
+    { src: 'img/certs/cert23.webp' },
+    { src: 'img/certs/cert24.webp' },
+    { src: 'img/certs/cert25.webp' },
+    { src: 'img/certs/cert26.webp' },
+    { src: 'img/certs/cert27.webp' }
 ];
 
 let currentModalIndex = 0;
