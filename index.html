@@ -313,10 +313,10 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <article onclick="openModal('article-1')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
                         <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
-                            <img src="img/articles/be_yourself.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="img/articles/self.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Нарушения пищевого поведения</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3">История одного клиента...</p>
+                        <p class="text-slate-600 text-sm line-clamp-3">История внутреннего взросления...</p>
                         <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
                     </article>
                     <article onclick="openModal('article-2')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
@@ -353,7 +353,7 @@
                     </article>
                     <article onclick="openModal('article-6')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
                         <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="img/articles/psysoma.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Психосоматические симптомы</h3>
                         <p class="text-slate-600 text-sm line-clamp-3">Почему тело болит, когда вы в стрессе...</p>
@@ -367,7 +367,7 @@
                 <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
                 <div class="mt-4">
                     <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Нарушения пищевого поведения</span>
-                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Когда появляется право быть собой: история внутреннего взросления через терапию</h2>
+                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Когда появляется право быть собой</h2>
                     <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
                         <p class="text-slate-400 text-sm italic">Мысли и анализ опыта работы с клиенткой. Некоторые сведения изменены для анонимности. И хочу поблагодарить моих клиентов за наш совместный путь и опыт, который многому учит меня.</p>
                         <p>Клиентка — молодая женщина, чуть старше двадцати пяти. С подросткового возраста её отношения с телом были непростыми: постоянные диеты, чувство вины после еды, периодические срывы. За внешним стремлением «взять себя в руки» скрывалась боль, тревога и глубокое ощущение одиночества.</p>
@@ -541,10 +541,43 @@
             <div id="article-6" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
                 <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
                 <div class="mt-4">
-                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Внутренние переживания</span>
-                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Стыд, вина, обида</h2>
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Психосоматические симптомы</span>
+                    <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Психосоматика и здоровье</h2>
                     <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
-                        <p>Полный текст третьей статьи...</p>
+                        <p>В ритме современного мира стресс стал неизбежной частью жизни. Рабочие нагрузки, переезды, адаптация к новым условиям и сложности в личных отношениях — всё это может сильно повлиять на наше физическое и эмоциональное состояние. Неудивительно, что после затяжных переживаний или кризисов начинают проявляться физические недомогания: от головных болей до обострения хронических заболеваний. Почему так происходит? Ответ кроется в психосоматике.</p>
+                        <div class="bg-slate-50 border-l-4 border-slate-300 p-5 italic text-slate-600">
+                            Психосоматика изучает взаимосвязь между психическим состоянием и физическим здоровьем. Наши эмоции и переживания способны напрямую влиять на работу тела. Когда мы сталкиваемся с долгосрочным стрессом, организм реагирует на него как на угрозу: напряжение в мышцах, скачки уровня гормонов, сбои в работе внутренних органов — всё это сигнализирует о том, что тело пытается справиться с нагрузкой. Однако, если стресс становится хроническим, защитные механизмы начинают работать против нас.
+                        </div>
+                        <h3><u>Вот лишь несколько примеров, как стресс может влиять на тело:</u></h3>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600">
+                            <li>Постоянное мышечное напряжение вызывает боли в спине, шее или хронические мигрени.</li>
+                            <li>Гормональные сбои снижают иммунитет, провоцируя развитие аутоиммунных заболеваний.</li>
+                            <li>Расстройства пищеварения («нервный желудок», синдром раздражённого кишечника) часто возникают у людей, которые не умеют выражать свои эмоции.</li>
+                        </ul>
+                        <div class="bg-slate-50 border-l-4 border-slate-300 p-5 italic text-slate-600">
+                            Особенно сложно протекают психосоматические расстройства при аутоиммунных заболеваниях, таких как артрит, артроз, экзема, гранулёмы. Эти состояния возникают, когда иммунная система начинает атаковать собственные ткани организма. Часто это происходит на фоне внутреннего конфликта, подавленных эмоций или долгих стрессовых ситуаций.
+                        </div>
+                        <p>Например, подавленный гнев или чувство вины могут стать своеобразными «триггерами» для ухудшения состояния. Тело словно говорит: «Обрати внимание на свои эмоции, реши внутренний конфликт».</p>
+                        <p>Работа с психологом — это возможность не только осознать причину стресса, но и научиться жить в гармонии с собой. Психотерапия помогает:</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-slate-600">
+                            <li>Определить эмоциональные триггеры, которые провоцируют ухудшение здоровья.</li>
+                            <li>Выражать подавленные чувства (гнев, страх, печаль) экологичным способом.</li>
+                            <li>Развивать внутренние ресурсы для снижения стресса и укрепления психического здоровья.</li>
+                            <li>Осваивать техники расслабления и восстанавливать баланс между телом и разумом.</li>
+                        </ol>
+                        <p>Методы, такие как символдрама и арт-терапия, позволяют глубже заглянуть в подсознание, найти и проработать скрытые конфликты, которые могут поддерживать болезнь.</p>
+                        <p class="text-slate-400 text-sm italic">Одна из моих клиенток обратилась за помощью с жалобами на хроническую экзему. После переезда в другую страну женщина столкнулась с чувством одиночества, сложностями адаптации и эмоциональным выгоранием. Медикаментозное лечение помогало лишь временно, а стресс продолжал провоцировать новые обострения.</p>
+                        <p class="text-slate-400 text-sm italic">В процессе работы с помощью символдрамы клиентка начала исследовать внутренние образы, которые помогли понять, что её болезнь — это проявление потребности в защите. Она осознала, что её тело буквально кричало о том, что она чувствовала себя уязвимой. Через работу с подсознанием и проживание этих эмоций женщина смогла снизить уровень стресса, улучшить эмоциональное состояние и заметила, что обострения стали происходить реже.</p>
+                        <p>Если вы замечаете, что хронические болезни или постоянные недомогания сопровождаются эмоциональным напряжением, это может быть сигналом, что вашей психике нужна помощь. Психотерапия поможет вам лучше понять себя, найти корень проблемы и выстроить новый путь к выздоровлению.</p>
+                        <p>Ваше здоровье начинается с заботы о внутреннем состоянии. Порой ключ к улучшению физического самочувствия лежит в области эмоций и подсознания.</p>
+                        <p><strong>Сделайте первый шаг к гармонии</strong></p>
+                        <p>Я готова помочь вам разобраться с психосоматическими проблемами и найти баланс между телом и душой. Запишитесь на консультацию и откройте путь к жизни без боли и стресса.</p>
+                         <div class="mt-10 pt-6 border-t border-slate-100 text-center">
+                            <p class="text-slate-600 mb-4 text-sm">Чувствуете, что вам нужна поддержка?</p>
+                            <button onclick="goToContacts()" class="text-blue-600 font-bold hover:underline text-lg">
+                                Записывайтесь на консультацию
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
