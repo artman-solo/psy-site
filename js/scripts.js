@@ -353,3 +353,15 @@ document.addEventListener('DOMContentLoaded', () => {
         experienceElement.textContent = currentYear - startYear;
     }
 });
+function goToContacts() {
+    // 1. Сначала закрываем модалку (вызываем твою готовую функцию)
+    closeModal();
+
+    // 2. Небольшая задержка, чтобы браузер успел вернуть скролл (overflow: auto)
+    setTimeout(() => {
+        const contactSection = document.getElementById('contacts'); // Убедись, что у блока контактов есть id="contacts"
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, 100); // 100 миллисекунд хватит
+}
