@@ -235,7 +235,8 @@ function initCertsMarquee() {
         <div class="marquee-item cursor-pointer px-3" onclick="openCertByIndex(${index % certsData.length})">
             <div style="width: 220px; height: 110px; overflow: hidden; border-radius: 12px; background: #f8fafc; border: 1px solid #e2e8f0; position: relative;">
                 <img src="${cert.src}" 
-                     alt="Сертификат" 
+                     alt="Сертификат"
+                     loading="lazy" 
                      style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important;">
             </div>
         </div>
