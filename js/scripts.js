@@ -145,11 +145,15 @@ if (track && container) {
 }
 
 // 4. Модальные окна (Статьи)
+let modalOpener = null;
+
 function openModal(id) {
     const overlay = document.getElementById('modal-overlay');
     const targetArticle = document.getElementById(id);
 
     if (overlay && targetArticle) {
+        modalOpener = document.activeElement;
+
         // 1. Сначала прячем все статьи (на случай, если какая-то осталась открытой)
         document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
 
@@ -161,6 +165,10 @@ function openModal(id) {
         // 3. Блокируем скролл на двух уровнях (для надежности на iOS)
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
+
+        // 4. Фокус на кнопку «Закрыть» для клавиатуры и скринридеров
+        const closeBtn = targetArticle.querySelector('.modal-close');
+        if (closeBtn) setTimeout(() => closeBtn.focus(), 0);
     }
 }
 
@@ -170,25 +178,31 @@ function closeModal() {
         overlay.classList.add('hidden');
         overlay.classList.remove('flex');
 
-        // ГЛАВНОЕ: Прячем контент, чтобы при следующем открытии не было багов
+        // Прячем контент, чтобы при следующем открытии не было багов
         document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
 
-        // Возвращаем скролл
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
+
+        // Возврат фокуса элементу, открывшему модалку
+        if (modalOpener && typeof modalOpener.focus === 'function') modalOpener.focus();
+        modalOpener = null;
     }
 }
 
-// Тапаут (клик по фону)
+// Клик по фону и закрытие по Escape (статьи)
 const modalOverlay = document.getElementById('modal-overlay');
 if (modalOverlay) {
     modalOverlay.addEventListener('click', function (e) {
-        // Проверяем, что клик был именно по фону, а не по самой статье
-        if (e.target === this) {
-            closeModal();
-        }
+        if (e.target === this) closeModal();
     });
 }
+document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (modalOverlay && !modalOverlay.classList.contains('hidden')) closeModal();
+    const certModal = document.getElementById('cert-modal');
+    if (certModal && !certModal.classList.contains('hidden')) closeCert();
+});
 
 // 5. Сертификаты (Бесконечная лента и Модалка)
 const certsData = [
@@ -243,9 +257,12 @@ function initCertsMarquee() {
     `).join('');
 }
 
-// 5.2 Модальное окно (без изменений)
+// 5.2 Модальное окно сертификатов
+let certOpener = null;
+
 function openCertByIndex(index) {
     currentModalIndex = index;
+    certOpener = document.activeElement;
     const modal = document.getElementById('cert-modal');
     const img = document.getElementById('cert-img');
     const track = document.getElementById('certs-track');
@@ -255,8 +272,9 @@ function openCertByIndex(index) {
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         document.body.style.overflow = 'hidden';
-        // Останавливаем ленту
         if (track) track.style.animationPlayState = 'paused';
+        const closeBtn = document.getElementById('cert-modal-close');
+        if (closeBtn) setTimeout(() => closeBtn.focus(), 0);
     }
 }
 
@@ -267,8 +285,9 @@ function closeCert() {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
         document.body.style.overflow = 'auto';
-        // Запускаем ленту
         if (track) track.style.animationPlayState = 'running';
+        if (certOpener && typeof certOpener.focus === 'function') certOpener.focus();
+        certOpener = null;
     }
 }
 

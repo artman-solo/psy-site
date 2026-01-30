@@ -372,9 +372,9 @@
                 </div>
             </div>
         </section>
-        <div id="modal-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+        <div id="modal-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Статья" tabindex="-1">
             <div id="article-1" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
-                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <button type="button" onclick="closeModal()" class="modal-close sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none" aria-label="Закрыть">&times;</button>
                 <div class="mt-4">
                     <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Нарушения пищевого поведения</span>
                     <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Когда появляется право быть собой</h2>
@@ -400,7 +400,7 @@
                 </div>
             </div>
             <div id="article-2" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
-                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <button type="button" onclick="closeModal()" class="modal-close sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none" aria-label="Закрыть">&times;</button>
                 <div class="mt-4">
                     <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Стыд и вина</span>
                     <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Как избавиться от стыда и вины</h2>
@@ -437,7 +437,7 @@
                 </div>
             </div>
             <div id="article-3" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
-                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <button type="button" onclick="closeModal()" class="modal-close sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none" aria-label="Закрыть">&times;</button>
                 <div class="mt-4">
                     <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Страхи и тревоги</span>
                     <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Как перестать жить в ожидании беды?</h2>
@@ -478,7 +478,7 @@
                 </div>
             </div>
             <div id="article-4" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
-                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <button type="button" onclick="closeModal()" class="modal-close sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none" aria-label="Закрыть">&times;</button>
                 <div class="mt-4">
                     <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Адаптация в эмиграции</span>
                     <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Почему внутри нас остаётся пустота и как найти в себе новые корни</h2>
@@ -515,7 +515,7 @@
                 </div>
             </div>
             <div id="article-5" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
-                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <button type="button" onclick="closeModal()" class="modal-close sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none" aria-label="Закрыть">&times;</button>
                 <div class="mt-4">
                     <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Апатия и депрессия</span>
                     <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Как понять, что с вами происходит</h2>
@@ -549,7 +549,7 @@
                 </div>
             </div>
             <div id="article-6" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
-                <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none">&times;</button>
+                <button type="button" onclick="closeModal()" class="modal-close sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none" aria-label="Закрыть">&times;</button>
                 <div class="mt-4">
                     <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Психосоматические симптомы</span>
                     <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Психосоматика и здоровье</h2>
@@ -728,8 +728,8 @@
         </div>
     </div>
 
-    <div id="cert-modal" class="fixed inset-0 bg-slate-900/95 backdrop-blur-md z-[100] hidden items-center justify-center p-4 transition-all duration-300" onclick="closeCert()">
-        <button class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl transition-transform hover:scale-110">&times;</button>
+    <div id="cert-modal" class="fixed inset-0 bg-slate-900/95 backdrop-blur-md z-[100] hidden items-center justify-center p-4 transition-all duration-300" role="dialog" aria-modal="true" aria-label="Просмотр сертификата" tabindex="-1" onclick="closeCert()">
+        <button type="button" id="cert-modal-close" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl transition-transform hover:scale-110" aria-label="Закрыть" onclick="event.stopPropagation(); closeCert()">&times;</button>
         
         <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 md:px-10">
             <button onclick="event.stopPropagation(); changeModalImg(-1)" class="nav-btn text-white/70 text-4xl">&lsaquo;</button>
