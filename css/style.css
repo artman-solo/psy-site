@@ -188,12 +188,7 @@ h1, h2, h3, .font-serif, .logo-font {
     -webkit-transform: scale(1.05);
 }
 
-/* 4. Анимация */
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
+/* 4. Анимация (стандартный @keyframes marquee объявлен выше в блоке сертификатов) */
 @-webkit-keyframes marquee {
     0% { -webkit-transform: translateX(0); }
     100% { -webkit-transform: translateX(-50%); }
