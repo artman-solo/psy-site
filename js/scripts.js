@@ -48,10 +48,28 @@ const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 const closeBtn = document.getElementById('close-btn');
 
+function openMobileMenu() {
+    if (!mobileMenu || !menuBtn) return;
+    mobileMenu.classList.add('active');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    if (closeBtn) setTimeout(() => closeBtn.focus(), 0);
+}
+
+function closeMobileMenu() {
+    if (!mobileMenu || !menuBtn) return;
+    mobileMenu.classList.remove('active');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    menuBtn.focus();
+}
+
 if (menuBtn && mobileMenu) {
-    menuBtn.onclick = () => mobileMenu.classList.add('active');
-    closeBtn.onclick = () => mobileMenu.classList.remove('active');
-    document.querySelectorAll('.mobile-link').forEach(l => l.onclick = () => mobileMenu.classList.remove('active'));
+    menuBtn.onclick = openMobileMenu;
+    if (closeBtn) closeBtn.onclick = closeMobileMenu;
+    document.querySelectorAll('.mobile-link').forEach(l => {
+        l.onclick = closeMobileMenu;
+    });
 }
 
 // 3. Карусель отзывов
@@ -199,6 +217,10 @@ if (modalOverlay) {
 }
 document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
+    if (mobileMenu && mobileMenu.classList.contains('active')) {
+        closeMobileMenu();
+        return;
+    }
     if (modalOverlay && !modalOverlay.classList.contains('hidden')) closeModal();
     const certModal = document.getElementById('cert-modal');
     if (certModal && !certModal.classList.contains('hidden')) closeCert();

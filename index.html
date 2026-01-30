@@ -52,7 +52,7 @@
 
             <div class="flex items-center space-x-4">
                 <a href="#contacts" class="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-medium btn-primary">Записаться</a>
-                <button id="menu-btn" class="lg:hidden text-slate-900 focus:outline-none">
+                <button type="button" id="menu-btn" class="lg:hidden text-slate-900 focus:outline-none" aria-expanded="false" aria-controls="mobile-menu" aria-label="Открыть меню">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
                 </button>
             </div>
@@ -60,8 +60,8 @@
     </nav>
 
     <main class="min-h-screen">
-        <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] flex flex-col p-10 lg:hidden">
-            <button id="close-btn" class="self-end text-slate-900 mb-10"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] flex flex-col p-10 lg:hidden" aria-hidden="true">
+            <button type="button" id="close-btn" class="self-end text-slate-900 mb-10" aria-label="Закрыть меню"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
             <div class="flex flex-col space-y-8 text-2xl font-serif">
                 <a href="#about" class="mobile-link">Обо мне</a>
                 <a href="#method" class="mobile-link">Методы</a>
