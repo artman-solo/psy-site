@@ -37,9 +37,10 @@ h1, h2, h3, .font-serif, .logo-font {
     font-family: 'Playfair Display', serif; 
 }
 
-/* Каллиграфический шрифт для логотипа (ваша подпись) */
 .logo-script { 
-    font-family: 'Marck Script', cursive; 
+    font-family: 'Playfair Display', serif;
+    font-weight: 500; /* Можно сделать чуть жирнее для солидности */
+    letter-spacing: -0.02em; /* Небольшое сужение для премиального вида */
 }
 
 /* --- ЦВЕТОВЫЕ АКЦЕНТЫ И ФОНЫ --- */

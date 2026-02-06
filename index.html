@@ -21,7 +21,7 @@
     <meta name="twitter:image" content="img/photoNata.jpeg">
     <title>НС | Психолог-символдраматист для эмигрантов</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&family=Marck+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
     <link rel="stylesheet" href="css/style.css">
@@ -42,27 +42,30 @@
                 <div class="w-16 h-16 bg-transparent flex items-center justify-center overflow-hidden shrink-0">
                     <img src="img/logo.webp" alt="НС" class="w-full h-full object-contain">
                 </div>
-                <div class="flex flex-col justify-center border-l border-blue-100 pl-4 h-12">
-                    <span class="logo-script text-2xl md:text-3xl text-slate-900 leading-[0.8]">
+                <div class="flex flex-col justify-center pl-2">
+                    <span class="text-2xl md:text-3xl text-slate-800 font-serif leading-tight tracking-tight">
                         Наталья Силина
                     </span>
-                    <span class="logo-script text-[11px] md:text-[14px] text-blue-500 -mt-0.5 opacity-90 tracking-tighter sm:tracking-normal" style="display: block; width: 100%; text-align: justify; text-align-last: justify;">
-                        путь через изменения к гармонии
+                    
+                    <span class="text-[10px] md:text-[10px] text-slate-500 uppercase tracking-[0.2em] font-medium mt-1">
+                        путь • изменения • гармония
                     </span>
                 </div>
             </a>
-
-            <div class="hidden lg:flex items-center text-sm font-medium text-slate-600">
-                <a href="#about" class="hover:text-blue-600 transition-colors px-4 border-r border-blue-100/50">Обо мне</a>
-                <a href="#method" class="hover:text-blue-600 transition-colors px-4 border-r border-blue-100/50">Методы</a>
-                <a href="#services" class="hover:text-blue-600 transition-colors px-4 border-r border-blue-100/50">Услуги</a>
-                <a href="#reviews" class="hover:text-blue-600 transition-colors px-4 border-r border-blue-100/50">Отзывы</a>
-                <a href="#articles" class="hover:text-blue-600 transition-colors px-4 border-r border-blue-100/50">Статьи</a>
-                <a href="#contacts" class="hover:text-blue-600 transition-colors px-4 ">Контакты</a>
+    
+            <div class="hidden lg:flex items-center space-x-6 text-sm font-medium text-slate-600">
+                <a href="#about" class="hover:text-blue-600 transition-colors">Обо мне</a>
+                <a href="#method" class="hover:text-blue-600 transition-colors">Методы</a>
+                <a href="#services" class="hover:text-blue-600 transition-colors">Услуги</a>
+                <a href="#reviews" class="hover:text-blue-600 transition-colors">Отзывы</a>
+                <a href="#articles" class="hover:text-blue-600 transition-colors">Статьи</a>
+                <a href="#contacts" class="hover:text-blue-600 transition-colors">Контакты</a>
             </div>
-
+    
             <div class="flex items-center space-x-4">
-                <a href="#contacts" class="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-medium btn-primary">Записаться</a>
+                <a href="#contacts" class="hidden md:block bg-blue-600 hover:bg-blue-800 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md text-center">
+                    Записаться
+                </a>
                 <button type="button" id="menu-btn" class="lg:hidden text-slate-900 focus:outline-none" aria-expanded="false" aria-controls="mobile-menu" aria-label="Открыть меню">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
                 </button>
@@ -95,17 +98,31 @@
                 </div>
 
                 <div class="order-2 md:order-1 text-center md:text-left">
-                    <span class="text-blue-500 font-medium tracking-widest uppercase text-[10px] md:text-xs">Психолог-символдраматист</span>
+                    <span class="text-slate-500 font-semibold tracking-[0.2em] uppercase text-[10px] md:text-[11px]">
+                        Психолог • Символдраматист
+                    </span>
+                
                     <h1 class="mt-4 leading-tight">
-                        <span class="block text-4xl md:text-7xl font-bold text-slate-900 mb-2">Наталья Силина</span>
-                        <span class="block text-xl md:text-3xl text-blue-600 font-serif italic font-light">бережный терапевт для эмигрантов</span>
+                        <span class="block text-4xl md:text-6xl lg:text-7xl font-bold text-slate-900 tracking-tight">
+                            Наталья Силина
+                        </span>
+                        <span class="block text-lg md:text-2xl text-blue-500/80 font-serif mt-2">
+                            бережный терапевт для эмигрантов
+                        </span>
                     </h1>
-                    <p class="mt-6 text-sm md:text-lg text-slate-600 leading-relaxed max-w-lg mx-auto md:mx-0">
+                
+                    <p class="mt-6 text-base md:text-lg text-slate-600 leading-relaxed max-w-lg mx-auto md:mx-0">
                         Помогаю обрести устойчивость, прожить кризис адаптации и найти новые смыслы в условиях неопределенности.
                     </p>
-                    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="#contacts" class="inline-block bg-blue-600 text-white px-10 py-4 rounded-xl font-bold btn-primary shadow-lg shadow-blue-200">Записаться на сессию</a>
-                        <a href="#method" class="border border-blue-200 text-blue-700 px-8 py-4 rounded-lg text-center font-medium hover:bg-white transition-colors">Методы работы</a>
+                
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="#contacts" class="bg-blue-600 hover:bg-blue-800 text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/20 text-center">
+                            Записаться на сессию
+                        </a>
+                        
+                        <a href="#services" class="border-2 border-blue-600 hover:bg-white/50 text-blue-600 hover:text-blue-700 hover:border-blue-600/50 hover:bg-blue-50 px-10 py-4 rounded-full font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg text-center">
+                            Услуги и цены
+                        </a>
                     </div>
                 </div>
 
