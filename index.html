@@ -372,59 +372,95 @@
                 </div>
             </div>
         </section>
-        <section id="articles" class="py-24 relative overflow-hidden">
+        <section id="articles" class="py-24 relative overflow-hidden bg-white">
             <div class="max-w-6xl mx-auto px-6 relative z-10">
-                <div class="mb-12">
-                    <h2 class="text-3xl md:text-4xl text-slate-900 font-serif mb-4 text-center">Статьи и размышления</h2>
+                <div class="mb-16">
+                    <h2 class="text-3xl md:text-4xl text-slate-900 font-serif text-center">Статьи и размышления</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <article onclick="openModal('article-1')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
-                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
-                            <img src="img/articles/self.webp" alt="Нарушения пищевого поведения" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <article onclick="openModal('article-1')" class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-blue-50 shadow-sm transition-all duration-300">
+                        <div class="aspect-video bg-slate-100 rounded-2xl mb-5 overflow-hidden">
+                            <img src="img/articles/self.webp" alt="Пищевое поведение" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Нарушения пищевого поведения</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3">История внутреннего взросления...</p>
-                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Пищевое поведение</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 leading-relaxed">История внутреннего взросления...</p>
+                        <div class="mt-6 flex items-center text-slate-600 group-hover:text-blue-600 transition-colors duration-300 text-base font-medium">
+                            <span class="relative pb-1">
+                                Читать далее
+                                <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                            </span>
+                            <span class="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+                        </div>
                     </article>
-                    <article onclick="openModal('article-2')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
-                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
+                    <article onclick="openModal('article-2')" class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-blue-50 shadow-sm transition-all duration-300">
+                        <div class="aspect-video bg-slate-100 rounded-2xl mb-5 overflow-hidden">
                             <img src="img/articles/shame_guilt.webp" alt="Стыд и вина" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Стыд и вина</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3">Как перестать жить под тяжестью стыда и вины и вернуть себе свободу...</p>
-                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Стыд и вина</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 leading-relaxed">Как перестать жить под тяжестью стыда...</p>
+                        <div class="mt-6 flex items-center text-slate-600 group-hover:text-blue-600 transition-colors duration-300 text-base font-medium">
+                            <span class="relative pb-1">
+                                Читать далее
+                                <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                            </span>
+                            <span class="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+                        </div>
                     </article>
-                    <article onclick="openModal('article-3')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
-                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
+                    <article onclick="openModal('article-3')" class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-blue-50 shadow-sm transition-all duration-300">
+                        <div class="aspect-video bg-slate-100 rounded-2xl mb-5 overflow-hidden">
                             <img src="img/articles/anxiety.webp" alt="Страхи и тревоги" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Страхи и тревоги</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3">Почему тревога не отпускает даже ночью...</p>
-                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Страхи и тревоги</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 leading-relaxed">Почему тревога не отпускает даже ночью...</p>
+                        <div class="mt-6 flex items-center text-slate-600 group-hover:text-blue-600 transition-colors duration-300 text-base font-medium">
+                            <span class="relative pb-1">
+                                Читать далее
+                                <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                            </span>
+                            <span class="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+                        </div>
                     </article>
-                    <article onclick="openModal('article-4')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
-                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
+                    <article onclick="openModal('article-4')" class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-blue-50 shadow-sm transition-all duration-300">
+                        <div class="aspect-video bg-slate-100 rounded-2xl mb-5 overflow-hidden">
                             <img src="img/articles/emigration.webp" alt="Адаптация в эмиграции" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Адаптация в эмиграции</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3">Эмиграция — это не только переезд...</p>
-                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Адаптация в эмиграции</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 leading-relaxed">Эмиграция — это не только переезд...</p>
+                        <div class="mt-6 flex items-center text-slate-600 group-hover:text-blue-600 transition-colors duration-300 text-base font-medium">
+                            <span class="relative pb-1">
+                                Читать далее
+                                <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                            </span>
+                            <span class="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+                        </div>
                     </article>
-                    <article onclick="openModal('article-5')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
-                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
+                    <article onclick="openModal('article-5')" class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-blue-50 shadow-sm transition-all duration-300">
+                        <div class="aspect-video bg-slate-100 rounded-2xl mb-5 overflow-hidden">
                             <img src="img/articles/depression.webp" alt="Апатия и депрессия" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Апатия и депрессия</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3">Почему депрессия — не просто грусть...</p>
-                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
-                    </article>
-                    <article onclick="openModal('article-6')" class="group cursor-pointer bg-slate-50 p-4 rounded-3xl border border-transparent hover:border-blue-100 hover:bg-white transition-all">
-                        <div class="aspect-video bg-slate-200 rounded-2xl mb-4 overflow-hidden">
-                            <img src="img/articles/psysoma.webp" alt="Психосоматические симптомы" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Апатия и депрессия</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 leading-relaxed">Почему депрессия — не просто грусть...</p>
+                        <div class="mt-6 flex items-center text-slate-600 group-hover:text-blue-600 transition-colors duration-300 text-base font-medium">
+                            <span class="relative pb-1">
+                                Читать далее
+                                <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                            </span>
+                            <span class="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">Психосоматические симптомы</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3">Почему тело болит, когда вы в стрессе...</p>
-                        <span class="mt-4 inline-block text-blue-600 text-sm font-semibold">Читать далее →</span>
+                    </article>
+                    <article onclick="openModal('article-6')" class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-blue-50 shadow-sm transition-all duration-300">
+                        <div class="aspect-video bg-slate-100 rounded-2xl mb-5 overflow-hidden">
+                            <img src="img/articles/psysoma.webp" alt="Психосоматика" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Психосоматика</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 leading-relaxed">Почему тело болит, когда вы в стрессе...</p>
+                        <div class="mt-6 flex items-center text-slate-600 group-hover:text-blue-600 transition-colors duration-300 text-base font-medium">
+                            <span class="relative pb-1">
+                                Читать далее
+                                <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                            </span>
+                            <span class="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+                        </div>
                     </article>
                 </div>
             </div>
@@ -433,7 +469,7 @@
             <div id="article-1" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
                 <button type="button" onclick="closeModal()" class="modal-close sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none" aria-label="Закрыть">&times;</button>
                 <div class="mt-4">
-                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Нарушения пищевого поведения</span>
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Пищевое поведение</span>
                     <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Когда появляется право быть собой</h2>
                     <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
                         <p class="text-slate-400 text-sm italic">Мысли и анализ опыта работы с клиенткой. Некоторые сведения изменены для анонимности. И хочу поблагодарить моих клиентов за наш совместный путь и опыт, который многому учит меня.</p>
@@ -608,7 +644,7 @@
             <div id="article-6" class="modal-content hidden bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl overflow-y-auto p-8 md:p-12 relative">
                 <button type="button" onclick="closeModal()" class="modal-close sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none" aria-label="Закрыть">&times;</button>
                 <div class="mt-4">
-                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Психосоматические симптомы</span>
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Психосоматика</span>
                     <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">Психосоматика и здоровье</h2>
                     <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
                         <p>В ритме современного мира стресс стал неизбежной частью жизни. Рабочие нагрузки, переезды, адаптация к новым условиям и сложности в личных отношениях — всё это может сильно повлиять на наше физическое и эмоциональное состояние. Неудивительно, что после затяжных переживаний или кризисов начинают проявляться физические недомогания: от головных болей до обострения хронических заболеваний. Почему так происходит? Ответ кроется в психосоматике.</p>
