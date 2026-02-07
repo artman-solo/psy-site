@@ -3,6 +3,7 @@ html, body {
     overflow-x: hidden; /* Запрещает горизонтальный скролл всего сайта */
     width: 100%;
     -webkit-text-size-adjust: 100%; /* Запрещает Safari самовольно менять размер шрифта */
+    scroll-behavior: smooth;
 }
 
 /* 2. Фикс Hero-секции и всех картинок */
