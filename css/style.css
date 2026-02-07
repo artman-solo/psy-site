@@ -59,17 +59,6 @@ h1, h2, h3, .font-serif, .logo-font {
     transform: translateY(-1px); /* Легкий подъем кнопки при наведении */
 }
 
-/* --- КАРТОЧКИ (Услуги, Статьи) --- */
-.card { 
-    background: white; 
-    transition: transform 0.3s ease; 
-    z-index: 10; 
-    position: relative; 
-}
-.card:hover { 
-    transform: translateY(-5px); /* Всплытие карточки при наведении */
-}
-
 /* --- МОБИЛЬНОЕ МЕНЮ --- */
 #mobile-menu { 
     transition: transform 0.3s ease-in-out; 
@@ -115,7 +104,7 @@ h1, h2, h3, .font-serif, .logo-font {
     animation: fadeIn 0.4s ease-out forwards; /* Плавное проявление за 0.4 сек */
 }
 
-/* --- СЕРТИФИКАТЫ: БЕСКОНЕЧНАЯ ЛЕНТА (ФИНАЛЬНАЯ ВЕРСИЯ) --- */
+/* --- СЕРТИФИКАТЫ: БЕСКОНЕЧНАЯ ЛЕНТА --- */
 
 /* 1. Окно просмотра (Viewport) */
 .cert-marquee-viewport {
