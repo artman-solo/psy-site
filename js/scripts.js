@@ -16,6 +16,13 @@ if (contactForm) {
 
         emailjs.sendForm('service_f38c7mr', 'template_i7r0e5h', this) // ЗАМЕНИТЕ НА ВАШИ ID
             .then(() => {
+                // --- ДОБАВЛЯЕМ ДЛЯ АНАЛИТИКИ ---
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'form_lead_sent',
+                    'form_name': 'contact_form'
+                });
+                
                 // Показываем экран успеха
                 if (success) {
                     success.classList.remove('hidden');
