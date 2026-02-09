@@ -54,32 +54,32 @@
             </a>
     
             <div class="hidden lg:flex items-center space-x-8 text-base font-medium text-slate-600">
-                <a href="#about" class="relative group py-1">
+                <a href="#about" class="nav-link relative group py-1">
                     <span class="group-hover:text-blue-600 transition-colors duration-300">Обо мне</span>
                     <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-500 transition-all duration-300 -translate-x-1/2 group-hover:w-full"></span>
                 </a>
             
-                <a href="#method" class="relative group py-1">
+                <a href="#method" class="nav-link relative group py-1">
                     <span class="group-hover:text-blue-600 transition-colors duration-300">Методы</span>
                     <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-500 transition-all duration-300 -translate-x-1/2 group-hover:w-full"></span>
                 </a>
             
-                <a href="#services" class="relative group py-1">
+                <a href="#services" class="nav-link relative group py-1">
                     <span class="group-hover:text-blue-600 transition-colors duration-300">Услуги</span>
                     <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-500 transition-all duration-300 -translate-x-1/2 group-hover:w-full"></span>
                 </a>
             
-                <a href="#reviews" class="relative group py-1">
+                <a href="#reviews" class="nav-link relative group py-1">
                     <span class="group-hover:text-blue-600 transition-colors duration-300">Отзывы</span>
                     <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-500 transition-all duration-300 -translate-x-1/2 group-hover:w-full"></span>
                 </a>
             
-                <a href="#articles" class="relative group py-1">
+                <a href="#articles" class="nav-link relative group py-1">
                     <span class="group-hover:text-blue-600 transition-colors duration-300">Статьи</span>
                     <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-500 transition-all duration-300 -translate-x-1/2 group-hover:w-full"></span>
                 </a>
             
-                <a href="#contacts" class="relative group py-1">
+                <a href="#contacts" class="nav-link relative group py-1">
                     <span class="group-hover:text-blue-600 transition-colors duration-300">Контакты</span>
                     <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-500 transition-all duration-300 -translate-x-1/2 group-hover:w-full"></span>
                 </a>
@@ -108,7 +108,7 @@
                 <a href="#contacts" id="btn-mobile-nav-book" class="mobile-link text-blue-600">Записаться</a>
             </div>
         </div>
-        <section class="hero-bg bg-blue-50 min-h-screen flex items-center pt-20 pb-12 overflow-hidden relative">
+        <section id="hero" class="hero-bg bg-blue-50 min-h-screen flex items-center pt-20 pb-12 overflow-hidden relative">
             <div class="pt-10 md:pt-5 w-full max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
                 
                 <div class="relative order-1 md:order-2 w-full">
@@ -846,5 +846,44 @@
     </div>
 
     <script src="js/scripts.js"></script>
-</body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+        
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -70% 0px',
+                threshold: 0
+            };
+        
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        
+                        navLinks.forEach(link => {
+                            // Если мы в Hero-секции, у которой нет ссылки в меню, 
+                            // или скролл в самом верху — класс удалится у всех.
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('nav-link-active');
+                            } else {
+                                link.classList.remove('nav-link-active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+        
+            sections.forEach(section => observer.observe(section));
+        
+            // Дополнительный фикс для возврата в самый верх
+            window.addEventListener('scroll', () => {
+                if (window.scrollY < 100) {
+                    navLinks.forEach(link => link.classList.remove('nav-link-active'));
+                }
+            });
+        });
+        </script>
+    </body>
 </html>
