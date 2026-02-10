@@ -1,3 +1,6 @@
+// 0. Глобальные флаги
+let isManualScrolling = false; // Тот самый флаг для исправления бага подсветки
+
 // 1. Инициализация и отправка формы (EmailJS)
 (function () {
     emailjs.init("QTfMoRQNuslYMT_AZ"); // ЗАМЕНИТЕ НА ВАШ КЛЮЧ
@@ -402,6 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
         experienceElement.textContent = currentYear - startYear;
     }
 });
+
 function goToContacts() {
     // 1. Сначала закрываем модалку (вызываем твою готовую функцию)
     closeModal();
@@ -414,3 +418,61 @@ function goToContacts() {
         }
     }, 100); // 100 миллисекунд хватит
 }
+
+// Автоматическая подсветка активной ссылки меню при скролле и клике
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    let isManualScrolling = false; // Флаг, чтобы не сбивать подсветку при ручном переходе
+
+    // Настройки для IntersectionObserver
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0,
+    };
+
+    // Observer следит за секциями и подсвечивает соответствующую nav-link
+    const observer = new IntersectionObserver((entries) => {
+        // Не меняем подсветку во время ручного перехода по якорю (после клика)
+        if (isManualScrolling) return;
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('nav-link-active');
+                    } else {
+                        link.classList.remove('nav-link-active');
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    // Навешиваем observer на каждую секцию
+    sections.forEach(section => observer.observe(section));
+
+    // Обработчик клика по ссылке меню — вручную подсвечиваем
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            isManualScrolling = true;
+
+            // Снимаем выделение у всех, выделяем кликнутую
+            navLinks.forEach(l => l.classList.remove('nav-link-active'));
+            link.classList.add('nav-link-active');
+
+            // Через 1 сек разблокируем автоматическую подсветку (scrollIntoView и скролл успеют пройти)
+            setTimeout(() => {
+                isManualScrolling = false;
+            }, 1000);
+        });
+    });
+
+    // Если прокручено вверх совсем, убираем подсветку
+    window.addEventListener('scroll', () => {
+        if (window.scrollY < 100 && !isManualScrolling) {
+            navLinks.forEach(link => link.classList.remove('nav-link-active'));
+        }
+    });
+});
