@@ -422,7 +422,7 @@ function goToContacts() {
 // Автоматическая подсветка активной ссылки меню при скролле и клике
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-link, #btn-nav-book, #btn-hero-book');
     let isManualScrolling = false; // Флаг, чтобы не сбивать подсветку при ручном переходе
 
     // Настройки для IntersectionObserver
@@ -434,16 +434,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Observer следит за секциями и подсвечивает соответствующую nav-link
     const observer = new IntersectionObserver((entries) => {
-        // Не меняем подсветку во время ручного перехода по якорю (после клика)
         if (isManualScrolling) return;
+    
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
+                
                 navLinks.forEach(link => {
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('nav-link-active');
-                    } else {
-                        link.classList.remove('nav-link-active');
+                    // ПРОВЕРКА: Если у ссылки НЕТ id кнопки записи, только тогда вешаем активный класс
+                    if (link.id !== 'btn-nav-book') {
+                        const isTarget = link.getAttribute('href') === `#${id}`;
+                        link.classList.toggle('nav-link-active', isTarget);
                     }
                 });
             }
