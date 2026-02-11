@@ -256,3 +256,25 @@ h1, h2, h3, .font-serif, .logo-font {
 .nav-link-active {
     color: #1d4ed8 !important;
 }
+#modal-body {
+    /* Запрещает прокрутке "уходить" на страницу, когда контент в модалке кончился */
+    overscroll-behavior: contain; /* Блокирует скролл фона */
+    overflow-y: auto;             /* Разрешает внутренний скролл */
+    -webkit-overflow-scrolling: touch; /* Плавность на iPhone */
+    scroll-behavior: auto !important;  /* Чтобы scrollTop=0 срабатывал мгновенно */
+}
+
+/* Красивый скроллбар для модалки */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+}

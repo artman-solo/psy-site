@@ -197,7 +197,7 @@ async function initArticles() {
 
                     <div class="flex-grow">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="text-cyan-600 text-xs font-bold uppercase tracking-widest">${article.category}</span>
+                            <span class="text-blue-600 text-xs font-bold uppercase tracking-widest">${article.category}</span>
                             <span class="text-slate-300">•</span>
                             <span class="text-slate-400 text-xs flex items-center gap-1">
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -236,27 +236,35 @@ async function initArticles() {
             const art = articles.find(a => a.id === id);
             const modalBody = document.getElementById('modal-body');
             const overlay = document.getElementById('modal-overlay');
-
+        
             if (art && modalBody && overlay) {
+                // 1. Сначала вставляем контент
                 modalBody.innerHTML = `
-                    <button type="button" onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none" aria-label="Закрыть">&times;</button>
-                    <div class="mt-4">
+                    <div class="max-w-3xl mx-auto"> 
                         <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">${art.category}</span>
-                        <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">${art.title}</h2>
-                        <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
+                        <h2 class="text-3xl md:text-4xl font-serif text-slate-900 mt-2 mb-8">${art.title}</h2>
+                        <div class="prose prose-slate prose-lg max-w-none text-slate-600 leading-relaxed">
                             ${art.fullText}
-                            <div class="mt-10 pt-6 border-t border-slate-100 text-center">
-                                <p class="text-slate-600 mb-4 text-sm">Чувствуете, что вам нужна поддержка?</p>
-                                <button onclick="goToContacts()" id="${art.btnId}" class="text-blue-600 font-bold hover:underline text-lg">
-                                    Записывайтесь на консультацию
-                                </button>
-                            </div>
+                        </div>
+                        <div class="mt-12 pt-8 border-t border-slate-100 text-center">
+                            <p class="text-slate-600 mb-6 text-lg font-medium">Чувствуете, что вам нужна поддержка?</p>
+                            <button onclick="goToContacts()" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-100">
+                                Записаться на консультацию
+                            </button>
                         </div>
                     </div>
                 `;
+                
+                // 2. Показываем оверлей
                 overlay.classList.remove('hidden');
                 overlay.classList.add('flex');
                 document.body.style.overflow = 'hidden';
+        
+                // 3. ГАРАНТИРОВАННЫЙ СБРОС (с микро-задержкой)
+                setTimeout(() => {
+                    modalBody.scrollTo({ top: 0, behavior: 'instant' });
+                    modalBody.scrollTop = 0; // дублируем для старых браузеров
+                }, 10);
             }
         };
     } catch (error) {
@@ -265,14 +273,21 @@ async function initArticles() {
 }
 
 // Универсальная функция закрытия (для всех модалок)
-function closeModal() {
+window.closeModal = () => {
     const overlay = document.getElementById('modal-overlay');
-    if (overlay) {
-        overlay.classList.add('hidden');
-        overlay.classList.remove('flex');
-        document.body.style.overflow = '';
+    const modalBody = document.getElementById('modal-body');
+    
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+    document.body.style.overflow = ''; // Возвращаем дефолтный скролл
+
+    if (modalBody) {
+        // Очищаем контент при закрытии, чтобы при следующем открытии 
+        // браузер не помнил старое положение прокрутки
+        modalBody.innerHTML = ''; 
+        modalBody.scrollTop = 0;
     }
-}
+};
 
 // Обработка клика по фону оверлея
 const overlay = document.getElementById('modal-overlay');
