@@ -172,69 +172,109 @@ if (track && container) {
     window.addEventListener('resize', () => { index = 0; updatePosition(false); });
 }
 
-// 4. Модальные окна (Статьи)
-let modalOpener = null;
+// --- НОВЫЙ БЛОК СТАТЬИ 2.0 ---
 
-function openModal(id) {
-    const overlay = document.getElementById('modal-overlay');
-    const targetArticle = document.getElementById(id);
+async function initArticles() {
+    const grid = document.getElementById('articles-grid');
+    if (!grid) return; // Чтобы не было ошибок, если сетки нет на странице
 
-    if (overlay && targetArticle) {
-        modalOpener = document.activeElement;
+    try {
+        const response = await fetch('articles.json');
+        const articles = await response.json();
 
-        // 1. Сначала прячем все статьи (на случай, если какая-то осталась открытой)
-        document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
+        articles.forEach(article => {
+            // Считаем время прочтения
+            const words = article.fullText.replace(/<[^>]*>/g, '').split(/\s+/).length;
+            const time = Math.ceil(words / 200);
 
-        // 2. Показываем оверлей и конкретную статью
-        overlay.classList.remove('hidden');
-        overlay.classList.add('flex');
-        targetArticle.classList.remove('hidden');
+            const card = `
+                <article onclick="openArticle('${article.id}')" class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-blue-50 shadow-sm transition-all duration-300">
+                    <div class="aspect-video bg-slate-100 rounded-2xl mb-5 overflow-hidden">
+                        <img src="${article.image}" alt="${article.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-cyan-600 text-xs font-bold uppercase tracking-widest">${article.category}</span>
+                        <span class="text-slate-300">•</span>
+                        <span class="text-slate-400 text-xs flex items-center gap-1">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            ${time} мин
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">${article.title}</h3>
+                    <p class="text-slate-600 text-sm line-clamp-3 leading-relaxed">${article.preview}</p>
+                    <div class="mt-6 flex items-center text-slate-600 group-hover:text-blue-600 transition-colors text-base font-medium">
+                        <span class="relative pb-1">Читать далее <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full group-hover:left-0"></span></span>
+                        <span class="ml-2 transform group-hover:translate-x-2 transition-transform">→</span>
+                    </div>
+                </article>
+            `;
+            grid.innerHTML += card;
+        });
 
-        // 3. Блокируем скролл на двух уровнях (для надежности на iOS)
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
+        // Функция открытия статьи (теперь она глобальная через window)
+        window.openArticle = (id) => {
+            const art = articles.find(a => a.id === id);
+            const modalBody = document.getElementById('modal-body');
+            const overlay = document.getElementById('modal-overlay');
 
-        // 4. Фокус на кнопку «Закрыть» для клавиатуры и скринридеров
-        const closeBtn = targetArticle.querySelector('.modal-close');
-        if (closeBtn) setTimeout(() => closeBtn.focus(), 0);
+            if (art && modalBody && overlay) {
+                modalBody.innerHTML = `
+                    <button type="button" onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-slate-900 text-4xl leading-none" aria-label="Закрыть">&times;</button>
+                    <div class="mt-4">
+                        <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">${art.category}</span>
+                        <h2 class="text-3xl font-serif text-slate-900 mt-2 mb-6">${art.title}</h2>
+                        <div class="prose prose-slate text-slate-600 leading-relaxed space-y-4">
+                            ${art.fullText}
+                            <div class="mt-10 pt-6 border-t border-slate-100 text-center">
+                                <p class="text-slate-600 mb-4 text-sm">Чувствуете, что вам нужна поддержка?</p>
+                                <button onclick="goToContacts()" id="${art.btnId}" class="text-blue-600 font-bold hover:underline text-lg">
+                                    Записывайтесь на консультацию
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                overlay.classList.remove('hidden');
+                overlay.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        };
+    } catch (error) {
+        console.error("Ошибка при загрузке статей:", error);
     }
 }
 
+// Универсальная функция закрытия (для всех модалок)
 function closeModal() {
     const overlay = document.getElementById('modal-overlay');
     if (overlay) {
         overlay.classList.add('hidden');
         overlay.classList.remove('flex');
-
-        // Прячем контент, чтобы при следующем открытии не было багов
-        document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
-
         document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-
-        // Возврат фокуса элементу, открывшему модалку
-        if (modalOpener && typeof modalOpener.focus === 'function') modalOpener.focus();
-        modalOpener = null;
     }
 }
 
-// Клик по фону и закрытие по Escape (статьи)
-const modalOverlay = document.getElementById('modal-overlay');
-if (modalOverlay) {
-    modalOverlay.addEventListener('click', function (e) {
+// Обработка клика по фону оверлея
+const overlay = document.getElementById('modal-overlay');
+if (overlay) {
+    overlay.onclick = function(e) {
         if (e.target === this) closeModal();
-    });
+    };
 }
-document.addEventListener('keydown', function (e) {
-    if (e.key !== 'Escape') return;
-    if (mobileMenu && mobileMenu.classList.contains('active')) {
-        closeMobileMenu();
-        return;
-    }
-    if (modalOverlay && !modalOverlay.classList.contains('hidden')) closeModal();
-    const certModal = document.getElementById('cert-modal');
-    if (certModal && !certModal.classList.contains('hidden')) closeCert();
+
+// Запуск при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    initArticles();
+    // Тут же должны вызываться твои другие функции, например initCertsMarquee();
 });
+
+// Переход к контактам
+function goToContacts() {
+    closeModal();
+    setTimeout(() => {
+        document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' });
+    }, 200);
+}
 
 // 5. Сертификаты (Бесконечная лента и Модалка)
 const certsData = [
