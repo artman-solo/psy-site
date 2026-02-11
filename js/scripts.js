@@ -422,7 +422,7 @@ function goToContacts() {
 // Автоматическая подсветка активной ссылки меню при скролле и клике
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link, #btn-nav-book, #btn-hero-book');
+    const navLinks = document.querySelectorAll('.nav-link, #btn-nav-book, #btn-hero-book, #btn-hero-services');
     let isManualScrolling = false; // Флаг, чтобы не сбивать подсветку при ручном переходе
 
     // Настройки для IntersectionObserver
