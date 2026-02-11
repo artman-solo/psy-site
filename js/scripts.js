@@ -188,23 +188,43 @@ async function initArticles() {
             const time = Math.ceil(words / 200);
 
             const card = `
-                <article onclick="openArticle('${article.id}')" class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-blue-50 shadow-sm transition-all duration-300">
-                    <div class="aspect-video bg-slate-100 rounded-2xl mb-5 overflow-hidden">
+                <article onclick="openArticle('${article.id}')" 
+                        class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-blue-50 shadow-sm transition-all duration-300 flex flex-col h-full">
+                    
+                    <div class="aspect-video bg-slate-100 rounded-2xl mb-5 overflow-hidden flex-shrink-0">
                         <img src="${article.image}" alt="${article.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="text-cyan-600 text-xs font-bold uppercase tracking-widest">${article.category}</span>
-                        <span class="text-slate-300">•</span>
-                        <span class="text-slate-400 text-xs flex items-center gap-1">
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            ${time} мин
-                        </span>
+
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-cyan-600 text-xs font-bold uppercase tracking-widest">${article.category}</span>
+                            <span class="text-slate-300">•</span>
+                            <span class="text-slate-400 text-xs flex items-center gap-1">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                ${time} мин
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif line-clamp-2">${article.title}</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 leading-relaxed">${article.preview}</p>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">${article.title}</h3>
-                    <p class="text-slate-600 text-sm line-clamp-3 leading-relaxed">${article.preview}</p>
-                    <div class="mt-6 flex items-center text-slate-600 group-hover:text-blue-600 transition-colors text-base font-medium">
-                        <span class="relative pb-1">Читать далее <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full group-hover:left-0"></span></span>
-                        <span class="ml-2 transform group-hover:translate-x-2 transition-transform">→</span>
+
+                    <div class="mt-6 pt-5 border-t border-slate-50 flex items-center justify-between">
+                        <div class="flex items-center text-slate-600 group-hover:text-blue-600 transition-colors text-sm font-semibold gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                            <span>Читать</span>
+                        </div>
+
+                        ${article.audioUrl ? `
+                            <button onclick="event.stopPropagation(); playAudio('${article.audioUrl}', '${article.id}')" 
+                                    class="flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 text-xs font-bold uppercase tracking-wider">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"></path>
+                                </svg>
+                                Слушать
+                            </button>
+                        ` : ''}
                     </div>
                 </article>
             `;
@@ -265,6 +285,72 @@ if (overlay) {
 // Запуск при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     initArticles();
+    let currentAudio = null; // Здесь хранится текущий объект аудио
+let currentPlayingId = null; // ID статьи, которая сейчас звучит
+
+window.playAudio = (url, id) => {
+    // 1. Если нажали на ту же кнопку, что уже играет
+    if (currentAudio && currentPlayingId === id) {
+        if (currentAudio.paused) {
+            currentAudio.play();
+            updateAudioButtons(id, true);
+        } else {
+            currentAudio.pause();
+            updateAudioButtons(id, false);
+        }
+        return;
+    }
+
+    // 2. Если нажали на новую статью, а старая еще играет — останавливаем старую
+    if (currentAudio) {
+        currentAudio.pause();
+        updateAudioButtons(currentPlayingId, false);
+    }
+
+    // 3. Запускаем новую аудиозапись
+    currentAudio = new Audio(url);
+    currentPlayingId = id;
+    
+    currentAudio.play().catch(e => {
+        console.error("Ошибка воспроизведения. Проверьте путь к файлу:", url);
+        alert("Файл озвучки временно недоступен");
+    });
+
+    updateAudioButtons(id, true);
+
+    // Когда аудио закончится — возвращаем иконку в режим "Play"
+    currentAudio.onended = () => {
+        updateAudioButtons(id, false);
+        currentPlayingId = null;
+        currentAudio = null;
+    };
+};
+
+// Вспомогательная функция для смены иконок и текста на кнопках
+function updateAudioButtons(id, isPlaying) {
+    // Ищем все кнопки (и на карточке, и если добавим в модалку)
+    const btns = document.querySelectorAll(`button[onclick*="'${id}'"]`);
+    
+    btns.forEach(btn => {
+        const icon = isPlaying 
+            ? '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>' // Пауза
+            : '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'; // Плей
+        
+        const text = isPlaying ? 'Пауза' : 'Слушать';
+        
+        // Обновляем содержимое кнопки (иконка + текст)
+        btn.innerHTML = `${icon}<span>${text}</span>`;
+        
+        // Немного подсветим активную кнопку
+        if (isPlaying) {
+            btn.classList.add('bg-blue-600', 'text-white');
+            btn.classList.remove('bg-blue-50', 'text-blue-600');
+        } else {
+            btn.classList.remove('bg-blue-600', 'text-white');
+            btn.classList.add('bg-blue-50', 'text-blue-600');
+        }
+    });
+}
     // Тут же должны вызываться твои другие функции, например initCertsMarquee();
 });
 
