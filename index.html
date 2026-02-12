@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-5RXB4M6P');</script>
-        <!-- End Google Tag Manager -->
+        <script>
+            (function() {
+              // 1. Проверяем наличие твоей куки
+              if (document.cookie.includes('is_developer=true')) {
+                console.log("🛠 GTM заблокирован (Режим разработчика)");
+                return; // Прекращаем выполнение, GTM не загрузится
+              }
+          
+              // 2. Если куки нет — запускаем стандартный GTM
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-5RXB4M6P');
+            })();
+          </script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
         <meta name="description" content="Наталья Силина — психолог-символдраматист для эмигрантов. Бережная онлайн-психотерапия, работа с тревогой, депрессией, адаптацией в новой стране и психосоматическими симптомами.">
@@ -87,7 +96,7 @@
                 </div>
         
                 <div class="flex items-center space-x-4">
-                    <a href="#contacts" id="btn-nav-book" class="hidden md:block bg-gradient-to-br from-cyan-500 via-blue-600 to-blue-800 hover:from-cyan-600 hover:via-blue-700 hover:to-blue-900 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-cyan-900/20 text-center">
+                    <a href="#contacts" id="btn-nav-book" class="hidden md:block bg-gradient-to-br from-sky-500 via-blue-600 to-blue-800 hover:from-sky-600 hover:via-blue-700 hover:to-blue-900 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sky-900/20 text-center">
                         Записаться
                     </a>
                     <button type="button" id="menu-btn" class="lg:hidden text-slate-900 focus:outline-none" aria-expanded="false" aria-controls="mobile-menu" aria-label="Открыть меню">
@@ -140,11 +149,11 @@
                         </p>
                     
                         <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                            <a href="#contacts" id="btn-hero-book" class="inline-block bg-gradient-to-br from-cyan-500 via-blue-600 to-blue-800 
-                            hover:from-cyan-600 hover:via-blue-700 hover:to-blue-900 
+                            <a href="#contacts" id="btn-hero-book" class="inline-block bg-gradient-to-br from-sky-500 via-blue-600 to-blue-800 
+                            hover:from-sky-600 hover:via-blue-700 hover:to-blue-900 
                             text-white px-10 py-4 rounded-full font-semibold tracking-wide 
                             transition-all duration-500 hover:-translate-y-1 
-                            hover:shadow-xl hover:shadow-cyan-900/30 text-center">
+                            hover:shadow-xl hover:shadow-sky-900/30 text-center">
                                 Записаться на сессию
                             </a>
                             
@@ -156,7 +165,7 @@
 
                 </div>
             </section>
-            <section id="about" class="bg-cyan-50/50 py-20 border-b border-slate-50 relative overflow-hidden">
+            <section id="about" class="bg-sky-50 py-20 border-b border-slate-50 relative overflow-hidden">
                 <div class="max-w-6xl mx-auto px-6 relative z-10">
                     <h2 class="text-3xl md:text-5xl text-slate-900 font-serif mb-16">Обо мне</h2>
                     
@@ -169,11 +178,11 @@
                             
                             <div class="grid grid-cols-2 gap-8 py-6 border-y border-blue-100/50">
                                 <div>
-                                    <p class="bg-gradient-to-r from-cyan-600 to-blue-800 bg-clip-text text-transparent font-bold text-2xl">2010</p>
+                                    <p class="bg-gradient-to-r from-sky-600 to-blue-800 bg-clip-text text-transparent font-bold text-2xl">2010</p>
                                     <p class="text-xs uppercase tracking-widest text-slate-400 mt-1">высшее образование</p>
                                 </div>
                                 <div>
-                                    <p class="bg-gradient-to-r from-cyan-600 to-blue-800 bg-clip-text text-transparent font-bold text-2xl">
+                                    <p class="bg-gradient-to-r from-sky-600 to-blue-800 bg-clip-text text-transparent font-bold text-2xl">
                                         <span id="experience-years" data-target="2010"></span> лет
                                     </p>
                                     <p class="text-xs uppercase tracking-widest text-slate-400 mt-1">опыт работы</p>
@@ -190,28 +199,28 @@
             
                         <div class="bg-white/60 p-6 rounded-[2rem] border border-blue-100 backdrop-blur-sm shadow-sm">
                             <h3 class="text-lg font-bold text-blue-900 mb-6 flex items-center gap-2">
-                                <span class="w-8 h-[1px] bg-blue-200"></span>
+                                <span class="w-8 h-[1px]"></span>
                                 Личные факты
                             </h3>
                             <ul class="space-y-3 text-sm text-slate-600">
                                 <li class="flex items-start gap-3">
-                                    <span class="bg-gradient-to-r from-cyan-600 via-blue-700 to-blue-900 bg-clip-text text-transparent mt-1 flex-shrink-0">•</span>
+                                    <span class="bg-gradient-to-r from-sky-600 via-blue-700 to-blue-900 bg-clip-text text-transparent mt-1 flex-shrink-0">•</span>
                                     <span>Самой важной ценностью в жизни является моя семья и близкие.</span>
                                 </li>
                                 <li class="flex items-start gap-3">
-                                    <span class="bg-gradient-to-r from-cyan-600 via-blue-700 to-blue-900 bg-clip-text text-transparent mt-1 flex-shrink-0">•</span>
+                                    <span class="bg-gradient-to-r from-sky-600 via-blue-700 to-blue-900 bg-clip-text text-transparent mt-1 flex-shrink-0">•</span>
                                     <span>Обожаю общаться и находиться в контакте с людьми. Нет ничего ценнее интересных бесед.</span>
                                 </li>
                                 <li class="flex items-start gap-3">
-                                    <span class="bg-gradient-to-r from-cyan-600 via-blue-700 to-blue-900 bg-clip-text text-transparent mt-1 flex-shrink-0">•</span>
+                                    <span class="bg-gradient-to-r from-sky-600 via-blue-700 to-blue-900 bg-clip-text text-transparent mt-1 flex-shrink-0">•</span>
                                     <span>Любовь к чтению настолько велика, что могу читать даже на ходу!</span>
                                 </li>
                                 <li class="flex items-start gap-3">
-                                    <span class="bg-gradient-to-r from-cyan-600 via-blue-700 to-blue-900 bg-clip-text text-transparent mt-1 flex-shrink-0">•</span>
+                                    <span class="bg-gradient-to-r from-sky-600 via-blue-700 to-blue-900 bg-clip-text text-transparent mt-1 flex-shrink-0">•</span>
                                     <span>Создаю уют в своем доме, вышивая картины. Способ выразить творческий потенциал.</span>
                                 </li>
                                 <li class="flex items-start gap-3">
-                                    <span class="bg-gradient-to-r from-cyan-600 via-blue-700 to-blue-900 bg-clip-text text-transparent mt-1 flex-shrink-0">•</span>
+                                    <span class="bg-gradient-to-r from-sky-600 via-blue-700 to-blue-900 bg-clip-text text-transparent mt-1 flex-shrink-0">•</span>
                                     <span>Спорт — мой личный способ работы со стрессом и негативными эмоциями.</span>
                                 </li>
                             </ul>
@@ -224,8 +233,8 @@
                 </div>
             
                 <div class="relative mt-2">
-                    <div class="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-cyan-50 via-cyan-50/80 to-transparent z-20 pointer-events-none"></div>
-                    <div class="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-cyan-50 via-cyan-50/80 to-transparent z-20 pointer-events-none"></div>
+                    <div class="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-sky-50 via-sky-50/80 to-transparent z-20 pointer-events-none"></div>
+                    <div class="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-sky-50 via-sky-50/80 to-transparent z-20 pointer-events-none"></div>
                     
                     <div class="cert-marquee-viewport overflow-hidden">
                         <div id="certs-track" class="flex gap-6 py-4 animate-scroll hover:pause-animation">
@@ -300,7 +309,7 @@
                     </div>
                 </div>
             </section>
-            <section id="services" class="py-24 bg-cyan-50/50">
+            <section id="services" class="py-24 bg-sky-50">
                 <div class="max-w-6xl mx-auto px-6">
                     <h2 class="text-3xl md:text-4xl text-center mb-16 text-slate-900 font-serif">С чем я работаю</h2>
                     
@@ -375,11 +384,11 @@
                                     <span>50€</span>
                                     <span class="font-sans text-base text-slate-500 font-medium ml-2">/ сессия</span>
                                 </div>
-                                <a href="#contacts" id="btn-pricing-book" class="w-full inline-block bg-gradient-to-br from-cyan-500 via-blue-600 to-blue-800 
-                                hover:from-cyan-600 hover:via-blue-700 hover:to-blue-900 
+                                <a href="#contacts" id="btn-pricing-book" class="w-full inline-block bg-gradient-to-br from-sky-500 via-blue-600 to-blue-800 
+                                hover:from-sky-600 hover:via-blue-700 hover:to-blue-900 
                                 text-white px-10 py-4 rounded-full font-semibold tracking-wide 
                                 transition-all duration-500 hover:-translate-y-1 
-                                hover:shadow-xl hover:shadow-cyan-900/30 text-center">
+                                hover:shadow-xl hover:shadow-sky-900/30 text-center">
                                     Записаться на сессию
                                 </a>
                             </div>
@@ -407,7 +416,7 @@
                     </div>
                 </div>
             </section>
-            <section id="articles" class="py-24 relative overflow-hidden bg-cyan-50/50">
+            <section id="articles" class="py-24 relative overflow-hidden bg-sky-50">
                 <div class="max-w-6xl mx-auto px-6 relative z-10">
                     <div class="mb-16">
                         <h2 class="text-3xl md:text-4xl text-slate-900 font-serif text-center">Статьи и размышления</h2>
@@ -478,9 +487,9 @@
                     
                             <button type="submit" id="submit-btn" 
                             class="w-full py-5 rounded-full font-bold text-white text-lg 
-                            bg-gradient-to-br from-cyan-500 via-blue-600 to-blue-800 
-                            hover:from-cyan-600 hover:via-blue-700 hover:to-blue-900 
-                            shadow-lg shadow-cyan-900/30 transition-all duration-300 
+                            bg-gradient-to-br from-sky-500 via-blue-600 to-blue-800 
+                            hover:from-sky-600 hover:via-blue-700 hover:to-blue-900 
+                            shadow-lg shadow-sky-900/30 transition-all duration-300 
                             hover:-translate-y-1 active:scale-[0.98]">
                             Отправить запрос
                             </button>

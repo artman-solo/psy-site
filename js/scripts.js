@@ -248,7 +248,11 @@ async function initArticles() {
                         </div>
                         <div class="mt-12 pt-8 border-t border-slate-100 text-center">
                             <p class="text-slate-600 mb-6 text-lg font-medium">Чувствуете, что вам нужна поддержка?</p>
-                            <button onclick="goToContacts()" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-100">
+                            <button onclick="goToContacts()" class="inline-block bg-gradient-to-br from-sky-500 via-blue-600 to-blue-800 
+                            hover:from-sky-600 hover:via-blue-700 hover:to-blue-900 
+                            text-white px-10 py-4 rounded-full font-semibold tracking-wide 
+                            transition-all duration-500 hover:-translate-y-1 
+                            hover:shadow-xl hover:shadow-sky-900/30 text-center">
                                 Записаться на консультацию
                             </button>
                         </div>
