@@ -178,11 +178,11 @@
                             
                             <div class="grid grid-cols-2 gap-8 py-6 border-y border-blue-100/50">
                                 <div>
-                                    <p class="bg-gradient-to-r from-sky-600 to-blue-800 bg-clip-text text-transparent font-bold text-2xl">2010</p>
+                                    <p class="bg-gradient-to-r from-sky-600 via-blue-700 to-blue-900 bg-clip-text text-transparent font-bold text-2xl">2010</p>
                                     <p class="text-xs uppercase tracking-widest text-slate-400 mt-1">высшее образование</p>
                                 </div>
                                 <div>
-                                    <p class="bg-gradient-to-r from-sky-600 to-blue-800 bg-clip-text text-transparent font-bold text-2xl">
+                                    <p class="bg-gradient-to-r from-sky-600 via-blue-700 to-blue-900 bg-clip-text text-transparent font-bold text-2xl">
                                         <span id="experience-years" data-target="2010"></span> лет
                                     </p>
                                     <p class="text-xs uppercase tracking-widest text-slate-400 mt-1">опыт работы</p>
@@ -198,8 +198,8 @@
                         </div>
             
                         <div class="bg-white/60 p-6 rounded-[2rem] border border-blue-100 backdrop-blur-sm shadow-sm">
-                            <h3 class="text-lg font-bold text-blue-900 mb-6 flex items-center gap-2">
-                                <span class="w-8 h-[1px]"></span>
+                            <h3 class="text-lg font-bold text-blue-600 mb-6 flex items-center gap-2">
+                                <span class="w-4 h-[1px]"></span>
                                 Личные факты
                             </h3>
                             <ul class="space-y-3 text-sm text-slate-600">
@@ -362,14 +362,14 @@
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                             <div class="bg-white p-8 rounded-3xl border border-blue-50 shadow-sm">
-                                <div class="text-blue-600 mb-4 font-serif italic text-lg">Краткосрочный формат</div>
+                                <div class="text-blue-600 mb-4 font-serif text-lg">Краткосрочный формат</div>
                                 <h4 class="text-xl font-bold mb-4 text-slate-900">Консультирование</h4>
                                 <p class="text-slate-600 text-sm leading-relaxed">
                                     Работа с конкретными точечными запросами. Мы используем быстрые методы и коучинговые стратегии для оперативного поиска решений.
                                 </p>
                             </div>
                             <div class="bg-white p-8 rounded-3xl border border-blue-50 shadow-sm">
-                                <div class="text-blue-600 mb-4 font-serif italic text-lg">Длительный формат</div>
+                                <div class="text-blue-600 mb-4 font-serif text-lg">Длительный формат</div>
                                 <h4 class="text-xl font-bold mb-4 text-slate-900">Психотерапия</h4>
                                 <p class="text-slate-600 text-sm leading-relaxed">
                                     Глубокая работа с травмами, поиск внутренних смыслов и качественная трансформация личности.
@@ -379,18 +379,41 @@
             
                         <div class="mt-16 max-w-md mx-auto">
                             <div class="bg-white p-10 rounded-[2.5rem] border border-blue-50 shadow-sm text-center">
-                                <p class="text-slate-600 mb-4 font-medium">Индивидуальная консультация <span class="block text-sm text-slate-400 font-normal mt-1">(онлайн, 50 минут)</span></p>
-                                <div class="font-serif text-4xl text-blue-900 mb-8 flex items-baseline justify-center">
-                                    <span>50€</span>
-                                    <span class="font-sans text-base text-slate-500 font-medium ml-2">/ сессия</span>
+                                <p class="text-slate-600 mb-6 font-medium">
+                                    Индивидуальная консультация 
+                                    <span class="block text-sm text-slate-400 font-normal mt-1">(онлайн, 50 минут)</span>
+                                </p>
+                        
+                                <div class="space-y-4 mb-8">
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">Первая встреча-знакомство</span>
+                                        <div class="font-serif text-4xl text-blue-900 flex items-baseline justify-center">
+                                            <span>35€</span>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="w-12 h-px bg-slate-100 mx-auto"></div>
+                        
+                                    <div class="flex flex-col items-center opacity-80">
+                                        <span class="text-xs font-medium text-slate-400 uppercase tracking-wider mb-1">Последующие сессии</span>
+                                        <div class="font-serif text-2xl text-slate-700 flex items-baseline justify-center">
+                                            <span>50€</span>
+                                            <span class="font-sans text-sm text-slate-500 font-medium ml-2">/ сессия</span>
+                                        </div>
+                                    </div>
                                 </div>
+                        
                                 <a href="#contacts" id="btn-pricing-book" class="w-full inline-block bg-gradient-to-br from-sky-500 via-blue-600 to-blue-800 
-                                hover:from-sky-600 hover:via-blue-700 hover:to-blue-900 
-                                text-white px-10 py-4 rounded-full font-semibold tracking-wide 
-                                transition-all duration-500 hover:-translate-y-1 
-                                hover:shadow-xl hover:shadow-sky-900/30 text-center">
+                                    hover:from-sky-600 hover:via-blue-700 hover:to-blue-900 
+                                    text-white px-10 py-4 rounded-full font-semibold tracking-wide 
+                                    transition-all duration-500 hover:-translate-y-1 
+                                    hover:shadow-xl hover:shadow-sky-900/30 text-center">
                                     Записаться на сессию
                                 </a>
+                        
+                                <p class="mt-6 text-[13px] leading-relaxed text-slate-400 italic">
+                                    *Окончательная стоимость и регулярность встреч определяются совместно на первой сессии.
+                                </p>
                             </div>
                         </div>
                     </div>
