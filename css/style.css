@@ -278,3 +278,22 @@ h1, h2, h3, .font-serif, .logo-font {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #cbd5e1;
 }
+
+/* В статье UI — кастомный .article-modal-player; само <audio> спрятано (без controls) */
+#article-audio-sync.is-audio-engine-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.article-modal-player .article-modal-track {
+    touch-action: none;
+}

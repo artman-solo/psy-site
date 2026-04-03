@@ -173,6 +173,141 @@ if (track && container) {
 }
 
 // --- НОВЫЙ БЛОК СТАТЬИ 2.0 ---
+// Единый плеер для карточки и модалки
+
+function resolvedAudioUrl(path) {
+    try {
+        return new URL(path, window.location.href).href;
+    } catch {
+        return path;
+    }
+}
+
+function getSharedArticleAudio() {
+    return document.getElementById('article-audio-sync');
+}
+
+function formatArticleTime(seconds) {
+    if (!isFinite(seconds) || seconds < 0) return '0:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s.toString().padStart(2, '0')}`;
+}
+
+function detachArticleAudioToHost() {
+    const el = getSharedArticleAudio();
+    const host = document.getElementById('article-audio-host');
+    if (el) {
+        el.removeAttribute('controls');
+        el.classList.remove('is-audio-engine-only');
+    }
+    if (el && host && el.parentElement !== host) host.appendChild(el);
+}
+
+/** Кастомный плеер в модалке (два цвета: дорожка + прогресс); нативный timeline не используем — у него третий «буферный» слой. */
+function mountModalArticlePlayer(slot, audioEl) {
+    if (!slot || !audioEl) return;
+    slot.innerHTML = '';
+    audioEl.removeAttribute('controls');
+    audioEl.classList.add('is-audio-engine-only');
+
+    const wrap = document.createElement('div');
+    wrap.className = 'article-modal-player flex flex-col gap-3 relative';
+
+    const row = document.createElement('div');
+    row.className = 'flex items-center gap-3 w-full';
+
+    const playBtn = document.createElement('button');
+    playBtn.type = 'button';
+    playBtn.className = 'article-modal-play shrink-0 w-10 h-10 rounded-full bg-slate-600 text-white flex items-center justify-center hover:bg-slate-700 transition-colors';
+    playBtn.setAttribute('aria-label', 'Воспроизвести');
+
+    const track = document.createElement('div');
+    track.className = 'article-modal-track flex-1 h-2.5 rounded-full bg-slate-200 cursor-pointer relative overflow-hidden';
+    const fill = document.createElement('div');
+    fill.className = 'article-modal-progress-fill h-full rounded-full bg-slate-600 pointer-events-none';
+    fill.style.width = '0%';
+    track.appendChild(fill);
+
+    const timeEl = document.createElement('span');
+    timeEl.className = 'article-modal-time text-sm text-slate-600 tabular-nums shrink-0 min-w-[5.75rem] text-right';
+    timeEl.textContent = '0:00 / 0:00';
+
+    row.appendChild(playBtn);
+    row.appendChild(track);
+    row.appendChild(timeEl);
+    wrap.appendChild(audioEl);
+    wrap.appendChild(row);
+    slot.appendChild(wrap);
+
+    function updateChrome() {
+        const d = audioEl.duration;
+        const c = audioEl.currentTime;
+        if (isFinite(d) && d > 0) {
+            fill.style.width = `${(c / d) * 100}%`;
+        } else {
+            fill.style.width = '0%';
+        }
+        timeEl.textContent = `${formatArticleTime(c)} / ${formatArticleTime(isFinite(d) ? d : 0)}`;
+        const playing = !audioEl.paused && !audioEl.ended;
+        playBtn.innerHTML = playing
+            ? '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>'
+            : '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>';
+        playBtn.setAttribute('aria-label', playing ? 'Пауза' : 'Воспроизвести');
+    }
+
+    playBtn.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (audioEl.paused) {
+            audioEl.play().catch(() => {});
+        } else {
+            audioEl.pause();
+        }
+    });
+
+    track.addEventListener('click', e => {
+        e.stopPropagation();
+        const d = audioEl.duration;
+        if (!isFinite(d) || d <= 0) return;
+        const rect = track.getBoundingClientRect();
+        const ratio = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+        audioEl.currentTime = ratio * d;
+        updateChrome();
+    });
+
+    updateChrome();
+    window.__articleModalPlayerUpdate = updateChrome;
+}
+
+function updateAudioButtons(id, isPlaying) {
+    const btns = document.querySelectorAll(`button[data-article-audio-id="${id}"]`);
+    btns.forEach(btn => {
+        const icon = isPlaying
+            ? '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>'
+            : '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>';
+        const text = isPlaying ? 'Пауза' : 'Слушать';
+        btn.innerHTML = `${icon}<span>${text}</span>`;
+        if (isPlaying) {
+            btn.classList.add('bg-blue-600', 'text-white');
+            btn.classList.remove('bg-blue-50', 'text-blue-600');
+        } else {
+            btn.classList.remove('bg-blue-600', 'text-white');
+            btn.classList.add('bg-blue-50', 'text-blue-600');
+        }
+    });
+}
+
+function syncPlayButtonsFromPlayerState() {
+    const el = getSharedArticleAudio();
+    if (!el) return;
+    const id = window.__articleAudioActiveId;
+    const playing = Boolean(id) && !el.paused && !el.ended;
+    document.querySelectorAll('button[data-article-audio-id]').forEach(btn => {
+        const bid = btn.getAttribute('data-article-audio-id');
+        updateAudioButtons(bid, playing && bid === id);
+    });
+}
 
 async function initArticles() {
     const grid = document.getElementById('articles-grid');
@@ -217,8 +352,9 @@ async function initArticles() {
                         </div>
 
                         ${article.audioUrl ? `
-                            <button onclick="event.stopPropagation(); playAudio('${article.audioUrl}', '${article.id}')" 
-                                    class="flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 text-xs font-bold uppercase tracking-wider">
+                            <button type="button" data-article-audio-id="${article.id}"
+                                    onclick="event.stopPropagation(); playAudio('${article.audioUrl}', '${article.id}')"
+                                    class="article-audio-btn flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 text-xs font-bold uppercase tracking-wider shrink-0">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8 5v14l11-7z"></path>
                                 </svg>
@@ -238,11 +374,18 @@ async function initArticles() {
             const overlay = document.getElementById('modal-overlay');
         
             if (art && modalBody && overlay) {
+                detachArticleAudioToHost();
                 // 1. Сначала вставляем контент
                 modalBody.innerHTML = `
                     <div class="max-w-3xl mx-auto"> 
                         <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">${art.category}</span>
                         <h2 class="text-3xl md:text-4xl font-serif text-slate-900 mt-2 mb-8">${art.title}</h2>
+                        ${art.audioUrl ? `
+                        <div class="mb-8 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                            <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Озвучка статьи</p>
+                            <div id="modal-audio-slot"></div>
+                        </div>
+                        ` : ''}
                         <div class="prose prose-slate prose-lg max-w-none text-slate-600 leading-relaxed">
                             ${art.fullText}
                         </div>
@@ -258,11 +401,32 @@ async function initArticles() {
                         </div>
                     </div>
                 `;
+
+                if (art.audioUrl) {
+                    const slot = document.getElementById('modal-audio-slot');
+                    const el = getSharedArticleAudio();
+                    if (slot && el) {
+                        const target = resolvedAudioUrl(art.audioUrl);
+                        const cur = el.src ? el.src : '';
+                        if (cur !== target) {
+                            el.pause();
+                            el.src = art.audioUrl;
+                            window.__articleAudioActiveId = art.id;
+                            document.querySelectorAll('button[data-article-audio-id]').forEach(btn => {
+                                const bid = btn.getAttribute('data-article-audio-id');
+                                updateAudioButtons(bid, false);
+                            });
+                        }
+                        mountModalArticlePlayer(slot, el);
+                    }
+                }
                 
                 // 2. Показываем оверлей
                 overlay.classList.remove('hidden');
                 overlay.classList.add('flex');
                 document.body.style.overflow = 'hidden';
+
+                syncPlayButtonsFromPlayerState();
         
                 // 3. ГАРАНТИРОВАННЫЙ СБРОС (с микро-задержкой)
                 setTimeout(() => {
@@ -278,6 +442,7 @@ async function initArticles() {
 
 // Универсальная функция закрытия (для всех модалок)
 window.closeModal = () => {
+    detachArticleAudioToHost();
     const overlay = document.getElementById('modal-overlay');
     const modalBody = document.getElementById('modal-body');
     
@@ -286,11 +451,11 @@ window.closeModal = () => {
     document.body.style.overflow = ''; // Возвращаем дефолтный скролл
 
     if (modalBody) {
-        // Очищаем контент при закрытии, чтобы при следующем открытии 
-        // браузер не помнил старое положение прокрутки
         modalBody.innerHTML = ''; 
         modalBody.scrollTop = 0;
     }
+    window.__articleModalPlayerUpdate = null;
+    syncPlayButtonsFromPlayerState();
 };
 
 // Обработка клика по фону оверлея
@@ -301,76 +466,74 @@ if (overlay) {
     };
 }
 
-// Запуск при загрузке страницы
-document.addEventListener('DOMContentLoaded', () => {
-    initArticles();
-    let currentAudio = null; // Здесь хранится текущий объект аудио
-let currentPlayingId = null; // ID статьи, которая сейчас звучит
-
 window.playAudio = (url, id) => {
-    // 1. Если нажали на ту же кнопку, что уже играет
-    if (currentAudio && currentPlayingId === id) {
-        if (currentAudio.paused) {
-            currentAudio.play();
-            updateAudioButtons(id, true);
+    const el = getSharedArticleAudio();
+    if (!el) return;
+    const target = resolvedAudioUrl(url);
+    const cur = el.src ? el.src : '';
+
+    if (window.__articleAudioActiveId === id && cur === target) {
+        if (el.paused) {
+            el.play().catch(e => {
+                console.error('Ошибка воспроизведения:', url, e);
+                alert('Файл озвучки временно недоступен');
+            });
         } else {
-            currentAudio.pause();
-            updateAudioButtons(id, false);
+            el.pause();
         }
+        syncPlayButtonsFromPlayerState();
         return;
     }
 
-    // 2. Если нажали на новую статью, а старая еще играет — останавливаем старую
-    if (currentAudio) {
-        currentAudio.pause();
-        updateAudioButtons(currentPlayingId, false);
-    }
-
-    // 3. Запускаем новую аудиозапись
-    currentAudio = new Audio(url);
-    currentPlayingId = id;
-    
-    currentAudio.play().catch(e => {
-        console.error("Ошибка воспроизведения. Проверьте путь к файлу:", url);
-        alert("Файл озвучки временно недоступен");
+    el.pause();
+    document.querySelectorAll('button[data-article-audio-id]').forEach(btn => {
+        const bid = btn.getAttribute('data-article-audio-id');
+        updateAudioButtons(bid, false);
     });
 
-    updateAudioButtons(id, true);
+    el.src = url;
+    window.__articleAudioActiveId = id;
 
-    // Когда аудио закончится — возвращаем иконку в режим "Play"
-    currentAudio.onended = () => {
-        updateAudioButtons(id, false);
-        currentPlayingId = null;
-        currentAudio = null;
-    };
+    el.play().catch(e => {
+        console.error('Ошибка воспроизведения. Проверьте путь к файлу:', url, e);
+        alert('Файл озвучки временно недоступен');
+        window.__articleAudioActiveId = null;
+        syncPlayButtonsFromPlayerState();
+    });
+
+    syncPlayButtonsFromPlayerState();
 };
 
-// Вспомогательная функция для смены иконок и текста на кнопках
-function updateAudioButtons(id, isPlaying) {
-    // Ищем все кнопки (и на карточке, и если добавим в модалку)
-    const btns = document.querySelectorAll(`button[onclick*="'${id}'"]`);
-    
-    btns.forEach(btn => {
-        const icon = isPlaying 
-            ? '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>' // Пауза
-            : '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'; // Плей
-        
-        const text = isPlaying ? 'Пауза' : 'Слушать';
-        
-        // Обновляем содержимое кнопки (иконка + текст)
-        btn.innerHTML = `${icon}<span>${text}</span>`;
-        
-        // Немного подсветим активную кнопку
-        if (isPlaying) {
-            btn.classList.add('bg-blue-600', 'text-white');
-            btn.classList.remove('bg-blue-50', 'text-blue-600');
-        } else {
-            btn.classList.remove('bg-blue-600', 'text-white');
-            btn.classList.add('bg-blue-50', 'text-blue-600');
-        }
-    });
-}
-    // Тут же должны вызываться твои другие функции, например initCertsMarquee();
+document.addEventListener('DOMContentLoaded', () => {
+    initArticles();
+
+    const el = getSharedArticleAudio();
+    if (el) {
+        el.addEventListener('timeupdate', () => {
+            if (typeof window.__articleModalPlayerUpdate === 'function') window.__articleModalPlayerUpdate();
+        });
+        el.addEventListener('play', () => {
+            syncPlayButtonsFromPlayerState();
+            if (typeof window.__articleModalPlayerUpdate === 'function') window.__articleModalPlayerUpdate();
+        });
+        el.addEventListener('pause', () => {
+            syncPlayButtonsFromPlayerState();
+            if (typeof window.__articleModalPlayerUpdate === 'function') window.__articleModalPlayerUpdate();
+        });
+        el.addEventListener('ended', () => {
+            el.currentTime = 0;
+            const id = window.__articleAudioActiveId;
+            if (id) updateAudioButtons(id, false);
+            syncPlayButtonsFromPlayerState();
+            if (typeof window.__articleModalPlayerUpdate === 'function') window.__articleModalPlayerUpdate();
+        });
+        el.addEventListener('loadedmetadata', () => {
+            if (typeof window.__articleModalPlayerUpdate === 'function') window.__articleModalPlayerUpdate();
+        });
+        el.addEventListener('seeked', () => {
+            if (typeof window.__articleModalPlayerUpdate === 'function') window.__articleModalPlayerUpdate();
+        });
+    }
 });
 
 // Переход к контактам

@@ -627,6 +627,11 @@
             <img id="cert-img" src="" class="max-w-[90%] max-h-[85vh] rounded-lg shadow-2xl transition-all duration-300 pointer-events-none border border-white/10" onclick="event.stopPropagation()">
         </div>
 
+        <!-- Единый плеер озвучки: в модалке виден, вне статьи спрятан здесь -->
+        <div id="article-audio-host" class="sr-only w-0 h-0 overflow-hidden" aria-hidden="true">
+            <audio id="article-audio-sync" preload="metadata"></audio>
+        </div>
+
         <script src="js/scripts.js"></script>
     </body>
 </html>
